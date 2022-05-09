@@ -1,0 +1,85 @@
+.pagination {
+  display: flex;
+  @include border-radius($pagination-border-radius);
+}
+
+.pagination-link,
+.pagination-ellipsis {
+  position: relative;
+  display: block;
+  padding: $pagination-padding-y $pagination-padding-x;
+  margin-left: -$pagination-border-width;
+  line-height: $pagination-line-height;
+  text-decoration: if($link-decoration == none, null, none);
+  background-color: $pagination-bg;
+  border: $pagination-border-width solid $pagination-border-color;
+}
+.pagination-ellipsis {
+  background-color: $pagination-disabled-bg;
+  border-color: $pagination-disabled-border-color;
+  color: $pagination-disabled-color;
+}
+.pagination-link {
+  background-color: $pagination-bg;
+  color: $pagination-color;
+
+  @include hover() {
+    z-index: 2;
+    color: $pagination-hover-color;
+    text-decoration: none;
+    background-color: $pagination-hover-bg;
+    border-color: $pagination-hover-border-color;
+  }
+
+  @include focus() {
+    z-index: 3;
+    outline: $pagination-focus-outline;
+    box-shadow: $pagination-focus-box-shadow;
+  }
+}
+
+.pagination-item {
+  &:first-child {
+    .pagination-link {
+      margin-left: 0;
+      @include border-left-radius($border-radius);
+    }
+  }
+  &:last-child {
+    .pagination-link {
+      @include border-right-radius($border-radius);
+    }
+  }
+
+  &.active .pagination-link {
+    z-index: 3;
+    color: $pagination-active-color;
+    background-color: $pagination-active-bg;
+    border-color: $pagination-active-border-color;
+  }
+
+  &.disabled .pagination-link {
+    color: $pagination-disabled-color;
+    pointer-events: none;
+    // Opinionated: remove the "hand" cursor set previously for .pagination-link
+    cursor: auto;
+    background-color: $pagination-disabled-bg;
+    border-color: $pagination-disabled-border-color;
+  }
+}
+
+
+// Sizes
+.pagination-sm {
+  .pagination-link,
+  .pagination-ellipsis {
+    padding: $pagination-padding-y-sm $pagination-padding-x-sm;
+  }
+}
+
+.pagination-lg {
+  .pagination-link,
+  .pagination-ellipsis {
+    padding: $pagination-padding-y-lg $pagination-padding-x-lg;
+  }
+}

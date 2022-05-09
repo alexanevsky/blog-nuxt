@@ -1,0 +1,30 @@
+.breadcrumbs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  min-height: $breadcrumbs-height;
+  font-size: $breadcrumbs-font-size;
+  line-height: $breadcrumbs-line-height;
+
+  .breadcrumbs-item {
+    &:not(:last-child) {
+      margin-right: $breadcrumbs-item-space;
+
+      &::after {
+        margin-left: $breadcrumbs-item-space * .8;
+        content: $breadcrumbs-item-separator;
+        font-size: $breadcrumbs-font-size;
+        line-height: $breadcrumbs-line-height;
+        color: $breadcrumbs-value-color;
+      }
+    }
+  }
+  .breadcrumbs-link {
+    font-weight: $breadcrumbs-link-font-weight;
+    @include link($breadcrumbs-link-color);
+  }
+  .breadcrumbs-value {
+    font-weight: $breadcrumbs-value-font-weight;
+    color: $breadcrumbs-value-color;
+  }
+}

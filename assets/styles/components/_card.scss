@@ -1,0 +1,272 @@
+.card {
+  @include card();
+
+  & > hr {
+    margin-right: 0;
+    margin-left: 0;
+  }
+  & > .list-group {
+    border-top: inherit;
+    border-bottom: inherit;
+    @include border-radius(0);
+    @include box-shadow(none);
+
+    &:first-child {
+      border-top-width: 0;
+      @include border-top-radius($card-inner-border-radius);
+    }
+
+    &:last-child  {
+      border-bottom-width: 0;
+      @include border-bottom-radius($card-inner-border-radius);
+    }
+    & > .list-group-item {
+      border-width: 0 0 $list-group-border-width;
+
+      &:last-child {
+        border-bottom-width: 0;
+      }
+    }
+  }
+
+  & > .card-header + .list-group,
+  & > .list-group + .card-footer {
+    border-top: 0;
+  }
+}
+
+.card-body {
+  @include card-body();
+}
+
+.card-title {
+  font-size: $card-title-font-size;
+  font-weight: $card-title-font-weight;
+  margin-bottom: 0;
+
+  &:not(:last-child) {
+    margin-bottom: $card-padding-y;
+  }
+}
+
+
+// Header and footer
+.card-header {
+  display: flex;
+  align-items: $card-header-align-items;
+  justify-content: $card-header-justify-content;
+  padding: $card-padding-y $card-padding-x;
+  margin-bottom: 0;
+  color: $card-cap-color;
+  background-color: $card-cap-bg;
+  border-bottom: $card-border-width solid $card-border-color;
+
+  &:first-child {
+    @include border-radius($card-inner-border-radius $card-inner-border-radius 0 0);
+  }
+  .card-title {
+    &:not(:last-child) {
+      margin-bottom: 0;
+    }
+  }
+  & > .btn-toolbar,
+  & > .btn-group,
+  & > .btn {
+    margin-top: -$card-padding-y;
+    margin-bottom: -$card-padding-y;
+  }
+}
+
+.card-footer {
+  display: flex;
+  align-items: $card-footer-align-items;
+  justify-content: $card-footer-justify-content;
+  padding: $card-padding-y $card-padding-x;
+  color: $card-cap-color;
+  background-color: $card-cap-bg;
+  border-top: $card-border-width solid $card-border-color;
+
+  &:last-child {
+    @include border-radius(0 0 $card-inner-border-radius $card-inner-border-radius);
+  }
+}
+
+.card-fit,
+.card-slim {
+  .card-header,
+  .card-footer {
+    background-color: transparent !important;
+  }
+  .card-header {
+    border-bottom: none;
+  }
+  .card-footer {
+    border-top: none;
+  }
+}
+
+.card-slim {
+  .card-header {
+    padding-bottom: 0;
+  }
+  .card-footer {
+    padding-top: 0;
+  }
+}
+
+.card-body,
+.card-table,
+.card-row {
+  & + .card-body,
+  & + .card-table,
+  & + .card-row {
+    border-top: $card-border-width solid $card-border-color;
+  }
+}
+
+
+// Card tables
+.card-table {
+  .table {
+    th,
+    td {
+      &:first-child {
+        padding-left: $card-padding-x;
+      }
+      &:last-child {
+        padding-right: $card-padding-x;
+      }
+    }
+    thead.card-table-header,
+    tfoot.card-table-footer {
+      color: $card-cap-color;
+      background-color: $card-cap-bg;
+    }
+    thead.card-table-header {
+      font-size: $card-title-font-size;
+      font-weight: $card-title-font-weight;
+
+      tr {
+        &:first-child {
+          td,
+          th {
+            padding-top: $card-padding-y;
+          }
+        }
+        &:last-child {
+          td,
+          th {
+            padding-bottom: $card-padding-y;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+// Card image
+.card-image-overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: $card-image-overlay-padding;
+  @include border-radius($card-inner-border-radius);
+
+  &.card-image-overlay-top {
+    bottom: auto;
+  }
+  &.card-image-overlay-bottom {
+    top: auto;
+  }
+  &.card-image-overlay-right {
+    left: auto;
+  }
+  &.card-image-overlay-left {
+    right: auto;
+  }
+}
+
+.card-image,
+.card-image-top,
+.card-image-bottom {
+  flex-shrink: 0; // For IE: https://github.com/twbs/bootstrap/issues/29396
+  width: 100%;
+}
+
+.card-image,
+.card-image-top {
+  @include border-top-radius($card-inner-border-radius);
+}
+
+.card-image,
+.card-image-bottom {
+  @include border-bottom-radius($card-inner-border-radius);
+}
+
+
+// Card grid
+.card-row {
+  @include make-row();
+}
+.card-col {
+  &:not(:first-child) {
+    border-top: $card-border-width solid $card-border-color;
+  }
+}
+@each $breakpoint in map-keys($grid-breakpoints) {
+  @include media-breakpoint-up($breakpoint) {
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+    @if $infix != '' {
+      .card-col[class*="col#{$infix}"] {
+        &:not(:first-child) {
+          border-left: $card-border-width solid $card-border-color;
+          border-top: none;
+        }
+      }
+    }
+  }
+}
+@for $column from 1 to $grid-columns {
+  .card-col.col-#{$column} {
+    &:not(:first-child) {
+      border-left: $card-border-width solid $card-border-color;
+      border-top: none;
+    }
+  }
+}
+
+
+// Colors variants
+@each $name, $color in $colors {
+  .card-#{$name} {
+    background-color: color-level($color, $card-bg-level);
+    border-color: color-level($color, $card-border-level);
+
+    @if not-empty($card-color-level) {
+      color: color-level($color, $card-color-level);
+    }
+
+    &,
+    .card-body,
+    .card-table {
+      & + .card-body,
+      & + .card-table {
+        border-top-color: color-level($color, $card-border-level);
+      }
+    }
+
+    .card-header,
+    .card-footer {
+      background-color: color-level($color, $card-cap-bg-level);
+      border-color: color-level($color, $card-border-level);
+
+      @if not-empty($card-cap-color-level) {
+        color: color-level($color, $card-cap-color-level);
+      }
+    }
+  }
+}

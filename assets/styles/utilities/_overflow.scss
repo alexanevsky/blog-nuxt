@@ -1,0 +1,5 @@
+@each $overflow in $overflows {
+  .overflow-#{$overflow} {
+    overflow: $overflow !important;
+  }
+}

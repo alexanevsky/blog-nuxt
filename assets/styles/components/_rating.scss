@@ -1,0 +1,43 @@
+.rating {
+  display: flex;
+  font-size: $rating-font-size;
+
+  .rating-item {
+    display: block;
+    padding: $rating-padding-y $rating-padding-x;
+    color: $rating-color;
+    transform: scale($rating-scale);
+    @include transition($rating-transition);
+
+    &.selected {
+      color: $rating-selected-color;
+      transform: scale($rating-selected-scale);
+    }
+  }
+  a.rating-item {
+    &.hover,
+    &:hover {
+      color: $rating-hover-color;
+      transform: scale($rating-hover-scale);
+
+      &.selected {
+        color: $rating-select-hover-color;
+        transform: scale($rating-selected-scale);
+      }
+    }
+  }
+  &.rating-sm {
+    font-size: $rating-font-size-sm;
+
+    .rating-item {
+      padding: $rating-padding-y-sm $rating-padding-x-sm;
+    }
+  }
+  &.rating-lg {
+    font-size: $rating-font-size-lg;
+
+    .rating-item {
+      padding: $rating-padding-y-lg $rating-padding-x-lg;
+    }
+  }
+}

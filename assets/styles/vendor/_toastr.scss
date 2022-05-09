@@ -1,0 +1,89 @@
+.toast {
+  position: relative;
+  max-width: $toastr-width;
+  padding: $toastr-padding-y $toastr-padding-x;
+  background-color: $toastr-bg;
+  border: $toastr-border;
+  line-height: $toastr-line-height;
+  font-weight: $toastr-font-weight;
+  color: $toastr-color;
+  overflow: hidden;
+  @include font-size($toastr-font-size);
+  @include border-radius($toastr-border-radius);
+  @include box-shadow($toastr-box-shadow);
+
+  &:not(:last-child) {
+    margin-bottom: $toastr-spacer;
+  }
+
+  .toast-title {
+    font-weight: $toastr-title-font-weight;
+  }
+
+  .toast-progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: color-level($toastr-bg, $toastr-progress-bg-level);
+    height: $toastr-progress-size;
+  }
+
+  &.toast-success {
+    background-color: $toastr-success-bg;
+    border-color: $toastr-success-border-color;
+    color: $toastr-success-color;
+    @include box-shadow($toastr-success-box-shadow);
+
+    .toast-progress {
+      background-color: color-level($toastr-success-bg, $toastr-progress-bg-level);
+    }
+  }
+
+  &.toast-error {
+    background-color: $toastr-error-bg;
+    border-color: $toastr-error-border-color;
+    color: $toastr-error-color;
+    @include box-shadow($toastr-error-box-shadow);
+
+    .toast-progress {
+      background-color: color-level($toastr-error-bg, $toastr-progress-bg-level);
+    }
+  }
+
+  &.toast-warning {
+    background-color: $toastr-warning-bg;
+    border-color: $toastr-warning-border-color;
+    color: $toastr-warning-color;
+    @include box-shadow($toastr-warning-box-shadow);
+
+    .toast-progress {
+      background-color: color-level($toastr-warning-bg, $toastr-progress-bg-level);
+    }
+  }
+}
+
+// Position wrapper
+.toast-top-left,
+.toast-top-right,
+.toast-bottom-right,
+.toast-bottom-left {
+  position: fixed;
+  z-index: $z-index-toastr;
+}
+
+.toast-top-left {
+  top: $toastr-offset;
+  left: $toastr-offset;
+}
+.toast-top-right {
+  top: $toastr-offset;
+  right: $toastr-offset;
+}
+.toast-bottom-right {
+  right: $toastr-offset;
+  bottom: $toastr-offset;
+}
+.toast-bottom-left {
+  bottom: $toastr-offset;
+  left: $toastr-offset;
+}

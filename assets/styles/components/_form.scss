@@ -1,0 +1,131 @@
+// Form groups
+.form-group {
+  &:not(:last-child) {
+    margin-bottom: $form-group-margin-bottom;
+  }
+}
+
+.form-text,
+.form-help,
+.form-error {
+  &:not(:first-child) {
+    margin-top: $form-text-margin-top;
+  }
+  a {
+    color: $form-text-link-color;
+
+    @include hover-focus() {
+      color: $form-text-link-hover-color;
+    }
+  }
+}
+
+.form-help {
+  @include font-size($form-help-font-size);
+  color: $form-help-color;
+}
+
+.form-error {
+  @include font-size($form-error-font-size);
+  color: $form-error-color;
+}
+
+.form-field {
+  &:not(:first-child) {
+    margin-top: $form-field-margin-top;
+  }
+}
+
+.form-label {
+  @include font-size($form-label-font-size);
+
+  &:not(:last-child):not(.col-form-label) {
+    margin-bottom: $form-label-margin-bottom;
+  }
+  &.required::after {
+    content: $form-label-required-conent;
+    font-size: $form-label-required-font-size;
+    margin-left: $form-label-required-margin;
+    color: $form-label-required-color;
+    vertical-align: $form-label-required-vertical-align;
+  }
+  & + .form-field {
+    margin-top: 0;
+  }
+}
+
+
+// Form grid
+.form-row {
+  @include make-row();
+
+  &:not(:last-child) {
+    margin-bottom: $form-group-margin-bottom;
+  }
+}
+
+.col-form-label {
+  padding-top: add($form-widget-padding-y, $form-widget-border-width);
+  padding-bottom: add($form-widget-padding-y, $form-widget-border-width);
+  margin-bottom: 0;
+  @include font-size(inherit);
+  line-height: $form-widget-line-height;
+}
+
+.col-form-label-lg {
+  padding-top: add($form-widget-padding-y-lg, $form-widget-border-width);
+  padding-bottom: add($form-widget-padding-y-lg, $form-widget-border-width);
+  @include font-size($form-widget-font-size-lg);
+  line-height: $form-widget-line-height-lg;
+}
+
+.col-form-label-sm {
+  padding-top: add($form-widget-padding-y-sm, $form-widget-border-width);
+  padding-bottom: add($form-widget-padding-y-sm, $form-widget-border-width);
+  @include font-size($form-widget-font-size-sm);
+  line-height: $form-widget-line-height-sm;
+}
+
+
+// Inline
+.form-inline {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+
+  // Kick in the inline
+  @include media-breakpoint-up(sm) {
+    .form-label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0;
+    }
+    .form-group {
+      display: flex;
+      flex: 0 0 auto;
+      flex-flow: row wrap;
+      align-items: center;
+      margin-bottom: 0;
+    }
+    .form-input,
+    .form-textarea {
+      display: inline-block;
+      width: auto;
+      vertical-align: middle;
+    }
+    .form-plain {
+      display: inline-block;
+    }
+
+    .input-group {
+      width: auto;
+    }
+    .form-check,
+    .form-radio,
+    .form-switch {
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}

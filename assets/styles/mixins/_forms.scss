@@ -1,0 +1,29 @@
+@mixin form-input-focus($color: null) {
+  @if $color == null {
+    @include focus() {
+      color: $form-widget-focus-color;
+      background-color: $form-widget-focus-bg;
+      border-color: $form-widget-focus-border-color;
+      outline: 0;
+
+      @if $enable-shadows {
+        @include box-shadow($form-widget-box-shadow, $form-widget-focus-box-shadow);
+      } @else {
+        box-shadow: $form-widget-focus-box-shadow;
+      }
+    }
+  } @else {
+    @include focus() {
+      color: $form-widget-focus-color;
+      background-color: $form-widget-focus-bg;
+      border-color: $color;
+      outline: 0;
+
+      @if $enable-shadows {
+        @include box-shadow($form-widget-box-shadow, 0 0 0 $form-widget-focus-width rgba($color, $form-widget-focus-amount));
+      } @else {
+        box-shadow: 0 0 0 $form-widget-focus-width rgba($color, $form-widget-focus-amount);
+      }
+    }
+  }
+}

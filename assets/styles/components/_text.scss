@@ -1,0 +1,209 @@
+.h1, .text h1 { @include heading(1); }
+.h2, .text h2 { @include heading(2); }
+.h3, .text h3 { @include heading(3); }
+.h4, .text h4 { @include heading(4); }
+.h5, .text h5 { @include heading(5); }
+.h6, .text h6 { @include heading(6); }
+
+.title-1 { @include heading($title-1-size); }
+.title-2 { @include heading($title-2-size); }
+.title-3 { @include heading($title-3-size); }
+
+.blockquote,
+.text blockquote {
+  position: relative;
+  quotes: "«" "»";
+  padding-left: $blockquote-padding-x;
+  padding-right: $blockquote-padding-x;
+  @if not-empty($blockquote-font-family) {
+    font-family: $blockquote-font-family;
+  }
+  @include font-size($blockquote-font-size);
+  line-height: $blockquote-line-height;
+  font-style: $blockquote-font-style;
+
+  &::before,
+  &::after {
+    display: inline-block;
+    font-weight: $blockquote-quote-font-weight;
+    @include font-size($blockquote-quote-font-size);
+    color: $blockquote-quote-color;
+  }
+  &::before {
+    content: open-quote;
+    @if not-empty($blockquote-quote-spacer) {
+      margin-right: $blockquote-quote-spacer;
+    }
+  }
+  &::after {
+    content: close-quote;
+    @if not-empty($blockquote-quote-spacer) {
+      margin-left: $blockquote-quote-spacer;
+    }
+  }
+}
+
+.code,
+.text code {
+  @include padding($code-padding-y $code-padding-x);
+  @include border-radius($border-radius);
+  font-family: $code-font-family;
+  @include font-size($code-font-size);
+  line-height: $code-line-height;
+  font-weight: $code-font-weight;
+  background-color: $code-bg;
+  color: $code-color;
+}
+
+.code-pre,
+.text pre {
+  @include padding($code-pre-padding-y $code-pre-padding-x);
+  @include border-radius($border-radius);
+  background-color: $code-bg;
+  color: $code-color;
+
+  .code,
+  code {
+    padding: 0;
+    border-radius: 0;
+    background-color: transparent;
+    color: inherit;
+  }
+}
+
+.text {
+  @if not-empty($text-font-family) and $text-font-family != $font-family-base {
+    font-family: $text-font-family;
+  }
+  @include font-size($text-font-size);
+  line-height: $text-line-height;
+
+  &.text-small,
+  &.text-sm {
+    @include font-size($font-size-sm);
+  line-height: $line-height-sm;
+  }
+
+  p,
+  h1, h2, h3, h4, h5,
+  ol, ul,
+  blockquote,
+  hr,
+  pre,
+  table {
+    &:not(:last-child) {
+      margin-bottom: $text-spacer;
+    }
+  }
+
+  a:not(.btn) {
+    color: $text-link-color;
+
+    @if is-color($text-link-border-color) {
+      border-bottom: 1px solid $text-link-border-color;
+    }
+
+    @include hover-focus() {
+      color: $text-link-hover-color;
+
+      @if is-color($text-link-border-color) {
+        border-bottom: 1px solid transparent;
+      }
+    }
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    text-align: $text-heading-text-align;
+  }
+  h1, h2, h3, h4, h5 {
+    &:not(:first-child) {
+      margin-top: $text-spacer * 2;
+    }
+  }
+  h1 + h2,
+  h2 + h3,
+  h3 + h4,
+  h4 + h5 {
+    margin-top: 0 !important;
+  }
+
+  sup {
+    vertical-align: super;
+  }
+  sub {
+    vertical-align: sub;
+  }
+  sup,
+  sub,
+  small {
+    font-size: $font-size-sm;
+  }
+
+  ul,
+  ol {
+    li {
+      &:not(:last-child) {
+        margin-bottom: $text-list-spacer;
+      }
+    }
+  }
+
+  ul {
+    & > li {
+      position: relative;
+      padding-left: calc(#{$text-list-dot-size} + #{$text-list-dot-spacer} * 2);
+
+      &::before {
+        position: absolute;
+        content: '';
+        top: calc((#{$text-font-size} * #{$text-line-height} - #{$text-list-dot-size}) / 2);
+        left: $text-list-dot-spacer;
+        width: $text-list-dot-size;
+        height: $text-list-dot-size;
+        background-color: $text-list-dot-color;
+        @include border-radius(50%);
+      }
+    }
+  }
+
+  ol {
+    counter-reset: counter;
+
+    & > li {
+      position: relative;
+      padding-left: $text-font-size * 2 + $text-list-counter-spacer;
+
+      &::before {
+        position: absolute;
+        counter-increment: counter;
+        content: counter(counter) '.';
+        top: 0;
+        left: 0;
+        width: $text-font-size * 2;
+        text-align: right;
+        font-weight: $text-list-counter-font-weight;
+        @include font-size($text-font-size);
+        line-height: $text-line-height;
+        color: $text-list-counter-color;
+      }
+    }
+  }
+
+  ul, ol {
+    ul, ol {
+      margin-top: $text-list-spacer;
+      margin-left: $text-list-nested-margin;
+    }
+    ul > li {
+      &::before {
+        background-color: transparent;
+        border: 1px solid $text-list-dot-color;
+      }
+    }
+    ol > li {
+      &::before {
+        font-weight: $text-list-counter-font-weight - 100;
+      }
+    }
+  }
+}

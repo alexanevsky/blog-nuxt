@@ -1,0 +1,395 @@
+// Input, textarea and select
+.form-input,
+.form-textarea {
+  display: block;
+  width: 100%;
+  padding: $form-widget-padding-y $form-widget-padding-x;
+  font-family: $form-widget-font-family;
+  @include font-size($form-widget-font-size);
+  font-weight: $form-widget-font-weight;
+  line-height: $form-widget-line-height;
+  color: $form-widget-color;
+  background-color: $form-widget-bg;
+  background-clip: padding-box;
+  border: $form-widget-border-width solid $form-widget-border-color;
+
+  @include border-radius($form-widget-border-radius, 0);
+  @include box-shadow($form-widget-box-shadow);
+  @include transition($form-widget-transition);
+
+  &::-ms-expand {
+    background-color: transparent;
+    border: 0;
+  }
+  &:-moz-focusring {
+    color: transparent;
+    text-shadow: 0 0 0 $form-widget-color;
+  }
+  &::placeholder {
+    color: $form-widget-placeholder-color;
+    opacity: 1;
+  }
+
+  @include form-input-focus();
+
+  @each $name, $color in $colors {
+    &.form-focus-#{$name} {
+      @include form-input-focus($color);
+    }
+  }
+
+  &:disabled,
+  &[readonly] {
+    background-color: $form-widget-disabled-bg;
+    opacity: 1;
+  }
+  &:disabled {
+    cursor: $form-widget-disabled-cursor;
+  }
+}
+
+.form-input {
+  height: $form-widget-height;
+  padding-right: 0 !important;
+}
+
+.form-textarea {
+  min-height: $form-widget-height;
+}
+
+
+// Fix appearance for date inputs in Safari
+input[type="date"],
+input[type="time"],
+input[type="datetime-local"],
+input[type="month"] {
+  &.form-input {
+    appearance: none;
+  }
+}
+
+
+// Sizes of input and textarea
+.form-input-sm,
+.form-textarea-sm {
+  padding: $form-widget-padding-y-sm $form-widget-padding-x-sm;
+  @include font-size($form-widget-font-size-sm);
+  line-height: $form-widget-line-height-sm;
+  @include border-radius($form-widget-border-radius-sm);
+}
+.form-input-sm {
+  height: $form-widget-height-sm;
+}
+
+.form-input-lg,
+.form-textarea-lg {
+  padding: $form-widget-padding-y-lg $form-widget-padding-x-lg;
+  @include font-size($form-widget-font-size-lg);
+  line-height: $form-widget-line-height-lg;
+  @include border-radius($form-widget-border-radius-lg);
+}
+.form-input-lg {
+  height: $form-widget-height-lg;
+}
+
+
+// Plain Text
+.form-plain {
+  display: block;
+  width: 100%;
+  padding: $form-widget-padding-y 0;
+  @include font-size($form-widget-font-size);
+  line-height: $form-widget-line-height;
+  color: $form-widget-plain-color;
+  background-color: transparent;
+  border: solid transparent;
+}
+.form-plain-lg {
+  padding: $form-widget-padding-y-lg 0;
+  @include font-size($form-widget-font-size-sm);
+  line-height: $form-widget-line-height-sm;
+}
+.form-plain-lg {
+  padding: $form-widget-padding-y-lg 0;
+  @include font-size($form-widget-font-size-lg);
+  line-height: $form-widget-line-height-lg;
+}
+
+
+// Checkboxes, radios and switchers
+.form-check,
+.form-radio,
+.form-switch {
+  position: relative;
+  z-index: 1;
+  display: block;
+  min-height: $font-size-base * $line-height-base;
+  padding-left: $form-widget-toggler-gutter + $form-widget-toggler-indicator-size;
+  color-adjust: exact;
+
+  & + .form-check,
+  & + .form-radio,
+  & + .form-switch {
+    margin-top: $form-widget-toggler-margin-top;
+  }
+}
+
+.form-check-inline,
+.form-radio-inline,
+.form-switch-inline {
+  display: inline-flex;
+  margin-right: $form-widget-toggler-spacer-x;
+}
+
+.form-check-input,
+.form-radio-input,
+.form-switch-input {
+  position: absolute;
+    left: 0;
+    z-index: -1;
+    width: $form-widget-toggler-indicator-size;
+    height: calc(($font-size-base * $line-height-base + $form-widget-toggler-indicator-size) / 2);
+    opacity: 0;
+    @include transition($form-widget-toggler-transition);
+}
+
+.form-check-label,
+.form-radio-label,
+.form-switch-label {
+  &::before,
+  &::after {
+    @include transition($form-widget-toggler-transition);
+  }
+}
+
+@each $el in (
+'check',
+'radio',
+'switch'
+) {
+  .form-#{$el}-icon {
+    position: absolute;
+    z-index: 1;
+    display: block;
+    opacity: 0;
+    @include transition(opacity $transition-properties);
+
+    & ~ .form-#{$el}-label::after {
+      display: none !important;
+    }
+    img,
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .form-#{$el}-input {
+    cursor: $form-widget-toggler-cursor;
+
+    &:checked ~ .form-#{$el}-icon {
+      opacity: 1;
+    }
+    &:checked ~ .form-#{$el}-label::before {
+      color: $form-widget-toggler-indicator-checked-color;
+      border-color: $form-widget-toggler-indicator-checked-border-color;
+      @include gradient-bg($form-widget-toggler-indicator-checked-bg);
+      @include box-shadow($form-widget-toggler-indicator-checked-box-shadow);
+    }
+    &:focus ~ .form-#{$el}-label::before {
+      @if $enable-shadows {
+        box-shadow: $form-widget-box-shadow, $form-widget-toggler-indicator-focus-box-shadow;
+      } @else {
+        box-shadow: $form-widget-toggler-indicator-focus-box-shadow;
+      }
+    }
+    &:focus:not(:checked) ~ .form-#{$el}-label::before {
+      border-color: $form-widget-toggler-indicator-focus-border-color;
+    }
+
+    &:not(:disabled):active ~ .form-#{$el}-label::before {
+      color: $form-widget-toggler-indicator-active-color;
+      background-color: $form-widget-toggler-indicator-active-bg;
+      border-color: $form-widget-toggler-indicator-active-border-color;
+      @include box-shadow($form-widget-toggler-indicator-active-box-shadow);
+    }
+    &[disabled],
+    &:disabled {
+      cursor: $form-widget-toggler-disabled-cursor;
+
+      & ~ .form-#{$el}-label {
+        color: $form-widget-toggler-label-disabled-color;
+        cursor: $form-widget-toggler-disabled-cursor;
+
+        &::before {
+          background-color: $form-widget-toggler-indicator-disabled-bg;
+          border-color: $form-widget-toggler-indicator-disabled-border-color;
+        }
+      }
+      & ~ .form-#{$el}-icon {
+        cursor: $form-widget-toggler-disabled-cursor;
+      }
+    }
+  }
+  @each $name, $color in $colors {
+    .form-#{$name} {
+      .form-#{$el}-input {
+        &:checked ~ .form-#{$el}-label::before {
+          border-color: $color;
+          @include gradient-bg($color);
+        }
+        &:focus ~ .form-#{$el}-label::before {
+          @if $enable-shadows {
+            box-shadow: $form-widget-box-shadow, 0 0 0 $form-widget-focus-width rgba($color, $form-widget-focus-amount);
+          } @else {
+            box-shadow: 0 0 0 $form-widget-focus-width rgba($color, $form-widget-focus-amount);
+          }
+        }
+        &:focus:not(:checked) ~ .form-#{$el}-label::before {
+          border-color: $color;
+        }
+      }
+    }
+  }
+}
+
+.form-check-label,
+.form-radio-label,
+.form-switch-label {
+  position: relative;
+  margin-bottom: 0;
+  vertical-align: top;
+  cursor: $form-widget-toggler-cursor;
+
+  &::before {
+    position: absolute;
+    top: calc(($font-size-base * $line-height-base - $form-widget-toggler-indicator-size) / 2);
+    left: -($form-widget-toggler-gutter + $form-widget-toggler-indicator-size);
+    display: block;
+    width: $form-widget-toggler-indicator-size;
+    height: $form-widget-toggler-indicator-size;
+    pointer-events: none;
+    content: "";
+    background-color: $form-widget-toggler-indicator-bg;
+    border: $form-widget-toggler-indicator-border-color solid $form-widget-toggler-indicator-border-width;
+    @include box-shadow($form-widget-toggler-indicator-box-shadow);
+  }
+  &::after {
+    position: absolute;
+    top: calc(($font-size-base * $line-height-base - $form-widget-toggler-indicator-size) / 2);
+    left: -($form-widget-toggler-gutter + $form-widget-toggler-indicator-size);
+    display: block;
+    width: $form-widget-toggler-indicator-size;
+    height: $form-widget-toggler-indicator-size;
+    content: "";
+    background: 50% / #{$form-widget-toggler-indicator-bg-size} no-repeat;
+  }
+}
+
+.form-check {
+  .form-check-icon {
+    top: calc(($font-size-base * $line-height-base - $form-widget-checkbox-indicator-icon-size) / 2);
+    left: calc(($form-widget-toggler-indicator-size - $form-widget-checkbox-indicator-icon-size) / 2);
+    width: $form-widget-checkbox-indicator-icon-size;
+    height: $form-widget-checkbox-indicator-icon-size;
+    @include font-size($form-widget-checkbox-indicator-icon-size);
+    line-height: $form-widget-checkbox-indicator-icon-size;
+    color: $form-widget-toggler-indicator-active-color;
+    cursor: $form-widget-toggler-cursor;
+  }
+  .form-check-label::before {
+    @include border-radius($form-widget-checkbox-indicator-border-radius);
+  }
+
+  .form-check-input:checked ~ .form-check-label {
+    &::after {
+      background-image: escape-svg($form-widget-checkbox-indicator-icon-checked);
+    }
+  }
+
+  .form-check-input:indeterminate ~ .form-check-label {
+    &::before {
+      border-color: $form-widget-checkbox-indicator-indeterminate-border-color;
+      @include gradient-bg($form-widget-checkbox-indicator-indeterminate-bg);
+      @include box-shadow($form-widget-checkbox-indicator-indeterminate-box-shadow);
+    }
+    &::after {
+      background-image: escape-svg($form-widget-checkbox-indicator-icon-indeterminate);
+    }
+  }
+}
+
+.form-radio {
+  .form-radio-icon {
+    top: calc(($font-size-base * $line-height-base - $form-widget-radio-indicator-icon-size) / 2);
+    left: calc(($form-widget-toggler-indicator-size - $form-widget-radio-indicator-icon-size) / 2);
+    width: $form-widget-radio-indicator-icon-size;
+    height: $form-widget-radio-indicator-icon-size;
+    @include font-size($form-widget-radio-indicator-icon-size);
+    line-height: $form-widget-radio-indicator-icon-size;
+    color: $form-widget-toggler-indicator-active-color;
+    cursor: $form-widget-toggler-cursor;
+  }
+  .form-radio-label::before {
+    // stylelint-disable-next-line property-disallowed-list
+    border-radius: $form-widget-radio-indicator-border-radius;
+  }
+
+  .form-radio-input:checked ~ .form-radio-label {
+    &::after {
+      background-image: escape-svg($form-widget-radio-indicator-icon-checked);
+    }
+  }
+}
+
+.form-switch {
+  padding-left: $form-widget-switch-width + $form-widget-toggler-gutter;
+
+  .form-switch-label {
+    &::before {
+      left: -($form-widget-switch-width + $form-widget-toggler-gutter);
+      width: $form-widget-switch-width;
+      pointer-events: all;
+      // stylelint-disable-next-line property-disallowed-list
+      border-radius: $form-widget-switch-indicator-border-radius;
+    }
+
+    &::after {
+      top: add(calc(($font-size-base * $line-height-base - $form-widget-toggler-indicator-size) / 2), $form-widget-toggler-indicator-border-width * 2);
+      left: add(-($form-widget-switch-width + $form-widget-toggler-gutter), $form-widget-toggler-indicator-border-width * 2);
+      width: $form-widget-switch-indicator-size;
+      height: $form-widget-switch-indicator-size;
+      background-color: $form-widget-toggler-indicator-border-color;
+      border-radius: $form-widget-switch-indicator-border-radius;
+      @include transition(transform $transition-properties, $form-widget-toggler-transition);
+    }
+  }
+
+  .form-switch-input:checked ~ .form-switch-label {
+    &::after {
+      background-color: $form-widget-toggler-indicator-bg;
+      transform: translateX($form-widget-switch-width - $form-widget-toggler-indicator-size);
+    }
+  }
+}
+
+
+// Valid and invalid
+.form-input,
+.form-textarea {
+  &.form-valid {
+    border-color: $form-widget-valid-border-color;
+    color: $form-widget-valid-color;
+
+    &:not(:disabled):not([readonly]) {
+      @include form-input-focus($form-widget-valid-border-color);
+    }
+  }
+  &.form-invalid {
+    border-color: $form-widget-invalid-border-color;
+    color: $form-widget-invalid-color;
+
+    &:not(:disabled):not([readonly]) {
+      @include form-input-focus($form-widget-invalid-border-color);
+    }
+  }
+}

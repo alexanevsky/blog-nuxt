@@ -1,0 +1,76 @@
+.tooltipster-sidetip.tooltipster-custom {
+  .tooltipster-box {
+    border: none;
+    background: $tooltipster-bg;
+    @include border-radius($border-radius);
+
+    .tooltipster-content {
+      padding: $tooltipster-padding-y $tooltipster-padding-x;
+      @include font-size($tooltipster-font-size);
+      line-height: $tooltipster-line-height;
+      font-weight: $tooltipster-font-weight;
+      color: $tooltipster-color;
+    }
+  }
+  .tooltipster-arrow {
+    height: calc($tooltipster-arrow-size / 2);
+    margin-left: - calc($tooltipster-arrow-size / 2);
+    width: $tooltipster-arrow-size;
+  }
+  .tooltipster-arrow-background {
+    display: none;
+  }
+  .tooltipster-arrow-border {
+    border: calc($tooltipster-arrow-size / 2) solid transparent;
+  }
+  &.tooltipster-bottom {
+    .tooltipster-box {
+      margin-top: calc($tooltipster-arrow-size / 2);
+    }
+    .tooltipster-arrow-border {
+      border-bottom-color: $tooltipster-bg;
+    }
+    .tooltipster-arrow-uncropped {
+      top: - calc($tooltipster-arrow-size / 2);
+    }
+  }
+  &.tooltipster-top {
+    .tooltipster-box {
+      margin-bottom: calc($tooltipster-arrow-size / 2);
+    }
+    .tooltipster-arrow-border {
+      border-top-color: $tooltipster-bg;
+    }
+  }
+  &.tooltipster-left {
+    .tooltipster-box {
+      margin-right: calc($tooltipster-arrow-size / 2);
+    }
+    .tooltipster-arrow {
+      height: $tooltipster-arrow-size;
+      margin-left: 0;
+      margin-top: - calc($tooltipster-arrow-size / 2);
+      width: calc($tooltipster-arrow-size / 2);
+    }
+    .tooltipster-arrow-border {
+      border-left-color: $tooltipster-bg;
+    }
+  }
+  &.tooltipster-right {
+    .tooltipster-box {
+      margin-left: calc($tooltipster-arrow-size / 2);
+    }
+    .tooltipster-arrow {
+      height: $tooltipster-arrow-size;
+      margin-left: 0;
+      margin-top: - calc($tooltipster-arrow-size / 2);
+      width: calc($tooltipster-arrow-size / 2);
+    }
+    .tooltipster-arrow-border {
+      border-right-color: $tooltipster-bg;
+    }
+    .tooltipster-arrow-uncropped {
+      left: - calc($tooltipster-arrow-size / 2);
+    }
+  }
+}

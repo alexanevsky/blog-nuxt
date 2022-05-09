@@ -1,0 +1,210 @@
+.label,
+.userlabel {
+  display: flex;
+  align-items: center;
+}
+
+.label-symbol,
+.userlabel-avatar {
+  width: $label-symbol-size;
+  height: $label-symbol-size;
+
+  &:not(:first-child) {
+    margin-left: $label-symbol-spacer;
+  }
+  &:not(:last-child) {
+    margin-right: $label-symbol-spacer;
+  }
+}
+
+.label-symbol {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: $label-symbol-border-radius;
+  background-color: $label-symbol-bg;
+  font-weight: $label-symbol-font-weight;
+  font-size: $label-symbol-font-size;
+  line-height: $label-symbol-line-height;
+  color: $label-symbol-color;
+  text-align: center;
+}
+
+.userlabel-avatar {
+  border-radius: $label-avatar-border-radius;
+}
+
+
+.label-content,
+.userlabel-content {
+  display: block;
+}
+
+.label-key,
+.userlabel-title {
+  display: block;
+  font-weight: $label-key-font-weight;
+  font-size: $label-key-font-size;
+  line-height: $label-key-line-height;
+  color: $label-key-color;
+}
+.label-value,
+.userlabel-name {
+  display: block;
+  font-weight: $label-value-font-weight;
+  font-size: $label-value-font-size;
+  line-height: $label-value-line-height;
+}
+
+// Link
+a.label {
+  &,
+  .label-symbol,
+  .label-key,
+  .label-value {
+    transition: $link-transition;
+  }
+
+  .label-symbol {
+    color: $label-symbol-color-link;
+  }
+
+  &:hover {
+    &,
+    .label-symbol,
+    .label-key,
+    .label-value {
+      color: $link-hover-color;
+    }
+  }
+}
+
+a.userlabel {
+  &,
+  .userlabel-name,
+  .userlabel-title {
+    transition: $link-transition;
+  }
+
+  &:hover {
+    &,
+    .userlabel-name,
+    .userlabel-title {
+      color: $link-hover-color;
+    }
+  }
+}
+
+.label:not(a) {
+  a.label-value {
+    &:hover {
+      color: $link-hover-color;
+    }
+  }
+}
+
+
+// Color variants
+@each $name, $color in $colors {
+  .label-#{$name} {
+    .label-symbol,
+    .label-key,
+    .label-value {
+      color: $color;
+    }
+  }
+  .userlabel-#{$name} {
+    &,
+    .userlabel-name {
+      color: $color;
+    }
+  }
+  a.label-#{$name} {
+    &:hover {
+      .label-symbol,
+      .label-key,
+      .label-value {
+        color: color-tint-modify($color, $link-hover-color-amount);
+      }
+    }
+  }
+  a.userlabel-#{$name} {
+    &:hover {
+      .userlabel-name,
+      .userlabel-title {
+        color: color-tint-modify($color, $link-hover-color-amount);
+      }
+    }
+  }
+}
+
+
+// Sizes
+.label-lg .label-symbol,
+.userlabel-lg .userlabel-avatar {
+  width: $label-symbol-size-lg;
+  height: $label-symbol-size-lg;
+
+  &:not(:first-child) {
+    margin-left: $label-symbol-spacer-lg;
+  }
+  &:not(:last-child) {
+    margin-right: $label-symbol-spacer-lg;
+  }
+}
+.label-lg .label-symbol {
+  font-size: $label-symbol-font-size-lg;
+  line-height: $label-symbol-line-height-lg;
+}
+.label-lg .label-key,
+.userlabel-lg .userlabel-title {
+  font-weight: $label-key-font-weight-lg;
+  font-size: $label-key-font-size-lg;
+  line-height: $label-key-line-height-lg;
+}
+.label-lg .label-value,
+.userlabel-lg .userlabel-name {
+  font-weight: $label-value-font-weight-lg;
+  font-size: $label-value-font-size-lg;
+  line-height: $label-value-line-height-lg;
+}
+
+
+
+.label-sm .label-symbol,
+.userlabel-sm .userlabel-avatar {
+  width: $label-symbol-size-sm;
+  height: $label-symbol-size-sm;
+
+  &:not(:first-child) {
+    margin-left: $label-symbol-spacer-sm;
+  }
+  &:not(:last-child) {
+    margin-right: $label-symbol-spacer-sm;
+  }
+}
+.label-sm .label-symbol {
+  font-size: $label-symbol-font-size-sm;
+  line-height: $label-symbol-line-height-sm;
+}
+.label-sm .label-content {
+  display: flex;
+
+  & > *:not(:first-child) {
+    margin-left: $label-content-spacer-sm;
+  }
+}
+.label-sm .label-key {
+  font-weight: $label-key-font-weight-sm;
+  font-size: $label-key-font-size-sm;
+  line-height: $label-key-line-height-sm;
+}
+.userlabel-sm .userlabel-title {
+  display: none;
+}
+.label-sm .label-value,
+.userlabel-sm .userlabel-name {
+  font-weight: $label-value-font-weight-sm;
+  font-size: $label-value-font-size-sm;
+  line-height: $label-value-line-height-sm;
+}

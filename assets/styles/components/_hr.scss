@@ -1,0 +1,28 @@
+hr,
+.hr {
+  border: none;
+  border-top: $hr-border-width $hr-border-style $hr-border-color;
+  margin: $hr-spacer 0 !important;
+}
+
+.hr-1 {
+  border-top-width: 1px;
+}
+
+@each $multiplier in $hr-border-width-multipliers {
+  .hr-#{$multiplier} {
+    border-top-width: calc(#{$hr-border-width} * #{$multiplier});
+  }
+}
+
+@each $style in $hr-border-styles {
+  .hr-#{$style} {
+    border-top-style: $style;
+  }
+}
+
+@each $name, $color in $colors {
+  .hr-#{$name} {
+    border-top-color: $color;
+  }
+}

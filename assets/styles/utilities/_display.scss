@@ -1,0 +1,35 @@
+@each $breakpoint in map-keys($grid-breakpoints) {
+  @include media-breakpoint-up($breakpoint) {
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+    @each $value in $displays {
+      .d#{$infix}-#{$value} {
+        display: $value !important;
+      }
+    }
+  }
+}
+
+@each $breakpoint in map-keys($grid-breakpoints) {
+  @include media-breakpoint-up($breakpoint) {
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+    @each $justify-name, $justify-value in $flex-justify-contents {
+      @each $align-name, $align-value in $flex-align-items {
+        .flex#{$infix}-#{$justify-name}-#{$align-name} {
+          display: flex !important;
+          justify-content: $justify-value !important;
+          align-items: $align-value !important;
+        }
+      }
+    }
+  }
+}
+
+@media print {
+  @each $value in $displays {
+    .d-print-#{$value} {
+      display: $value !important;
+    }
+  }
+}

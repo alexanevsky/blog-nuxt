@@ -1,0 +1,214 @@
+// Kill the scroll on the body
+body.with-modal {
+  overflow: hidden;
+
+  .modal {
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+}
+
+// Container that the modal scrolls within
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: $z-index-modal;
+  display: none;
+  width: 100%;
+  height: 100%;
+  background: $modal-backdrop-bg;
+  overflow: hidden;
+  outline: 0;
+}
+
+// Shell div to position the modal with bottom padding
+.modal-dialog {
+  position: relative;
+  width: auto;
+  margin: $modal-dialog-margin;
+  pointer-events: none;
+  @include transition($modal-transition);
+
+  // When trying to close, animate focus to scale
+  .modal.modal-static & {
+    transform: $modal-scale-transform;
+  }
+}
+
+.modal-dialog-scrollable {
+  display: flex;
+  max-height: subtract(100%, $modal-dialog-margin * 2);
+
+  .modal-content {
+    max-height: subtract(100vh, $modal-dialog-margin * 2);
+    overflow: hidden;
+  }
+
+  .modal-header,
+  .modal-footer {
+    flex-shrink: 0;
+  }
+
+  .modal-body {
+    overflow-y: auto;
+  }
+}
+
+.modal-dialog-centered {
+  display: flex;
+  align-items: center;
+  min-height: subtract(100%, $modal-dialog-margin * 2);
+
+  &::before {
+    display: block;
+    height: subtract(100vh, $modal-dialog-margin * 2);
+    height: min-content;
+    content: "";
+  }
+
+  &.modal-dialog-scrollable {
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+
+    .modal-content {
+      max-height: none;
+    }
+
+    &::before {
+      content: none;
+    }
+  }
+}
+
+// Modal content container
+.modal-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  color: $modal-content-color;
+  pointer-events: auto;
+  background-color: $modal-content-bg;
+  background-clip: padding-box;
+  border: $modal-content-border-width solid $modal-content-border-color;
+  @include border-radius($modal-content-border-radius);
+  @include box-shadow($modal-content-box-shadow-xs);
+  outline: 0;
+}
+
+// Modal close button
+.modal-close {
+  position: absolute;
+  top: $modal-close-margin-top;
+  right: calc(-#{$modal-close-margin-left} - #{$modal-close-font-size});
+  width: $modal-close-font-size;
+  height: $modal-close-font-size;
+  font-size: $modal-close-font-size;
+  line-height: $modal-close-font-size;
+  color: $modal-close-color;
+  @include transition($modal-close-transition);
+
+  &:hover {
+    color: $modal-close-hover-color;
+  }
+}
+
+// Modal header
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $modal-padding-y $modal-padding-x;
+  border-bottom: $modal-border-width solid $modal-border-color;
+  background-color: $modal-cap-bg;
+  color: $modal-cap-color;
+  @include border-top-radius($modal-content-inner-border-radius);
+
+  .close {
+    padding: calc($modal-padding-y / 2) calc($modal-padding-x / 2);
+    margin: #{- calc($modal-padding-y / 2)} #{- calc($modal-padding-x / 2)} #{- calc($modal-padding-y / 2)} auto;
+  }
+}
+
+// Title text within header
+.modal-title {
+  margin-bottom: 0;
+  @include font-size($modal-title-font-size);
+  line-height: $modal-title-line-height;
+  font-weight: $modal-title-font-weight;
+}
+
+// Modal body
+.modal-body {
+  position: relative;
+  flex: 1 1 auto;
+  padding: $modal-padding-y $modal-padding-x;
+}
+
+// Footer (for actions)
+.modal-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: $modal-footer-jusfity-content;
+  padding: $modal-padding-y $modal-padding-x;
+  border-top: $modal-border-width solid $modal-border-color;
+  background-color: $modal-cap-bg;
+  color: $modal-cap-color;
+  @include border-bottom-radius($modal-content-inner-border-radius);
+}
+
+// Measure scrollbar width for padding body during modal show/hide
+.modal-scrollbar-measure {
+  position: absolute;
+  top: -9999px;
+  width: 50px;
+  height: 50px;
+  overflow: scroll;
+}
+
+// Scale up the modal
+@include media-breakpoint-up(sm) {
+  .modal-dialog {
+    max-width: $modal-md;
+    margin: $modal-dialog-margin-y-sm-up auto;
+  }
+
+  .modal-dialog-scrollable {
+    max-height: subtract(100%, $modal-dialog-margin-y-sm-up * 2);
+
+    .modal-content {
+      max-height: subtract(100vh, $modal-dialog-margin-y-sm-up * 2);
+    }
+  }
+
+  .modal-dialog-centered {
+    min-height: subtract(100%, $modal-dialog-margin-y-sm-up * 2);
+
+    &::before {
+      height: subtract(100vh, $modal-dialog-margin-y-sm-up * 2);
+      height: min-content;
+    }
+  }
+
+  .modal-content {
+    @include box-shadow($modal-content-box-shadow-sm-up);
+  }
+
+  .modal-sm {
+    max-width: $modal-sm;
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  .modal-lg,
+  .modal-xl {
+    max-width: $modal-lg;
+  }
+}
+
+@include media-breakpoint-up(xl) {
+  .modal-xl { max-width: $modal-xl; }
+}

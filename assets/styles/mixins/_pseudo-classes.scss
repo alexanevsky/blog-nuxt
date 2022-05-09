@@ -1,0 +1,69 @@
+@mixin hover() {
+  &:hover,
+  &.hover {
+    @content;
+  }
+}
+
+@mixin focus() {
+  &:focus,
+  &.focus {
+    @content;
+  }
+}
+
+@mixin active() {
+  &:active,
+  &.active {
+    @content;
+  }
+}
+
+@mixin hover-focus() {
+  &:hover,
+  &.hover,
+  &:focus,
+  &.focus {
+    @content;
+  }
+}
+
+@mixin self-hover-focus() {
+  &,
+  &:hover,
+  &.hover,
+  &:focus,
+  &.focus {
+    @content;
+  }
+}
+
+@mixin hover-focus-active() {
+  &:hover,
+  &.hover,
+  &:focus,
+  &.focus,
+  &:active,
+  &.active {
+    @content;
+  }
+}
+
+@mixin self-hover-focus-active() {
+  &,
+  &:hover,
+  &.hover,
+  &:focus,
+  &.focus,
+  &:active,
+  &.active {
+    @content;
+  }
+}
+
+@mixin disabled() {
+  &:disabled,
+  &.disabled {
+    @content;
+  }
+}

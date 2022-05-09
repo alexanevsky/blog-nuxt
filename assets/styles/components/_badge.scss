@@ -1,0 +1,53 @@
+.badge {
+  display: inline-block;
+  padding: $badge-padding-y $badge-padding-x;
+  @include font-size($badge-font-size);
+  font-weight: $badge-font-weight;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  @include border-radius($badge-border-radius);
+  @include transition($badge-transition);
+
+  @at-root a#{&} {
+    @include hover-focus() {
+      text-decoration: none;
+    }
+  }
+}
+
+.btn .badge {
+  position: relative;
+  top: -1px;
+}
+
+// Pill badges
+.badge-pill {
+  padding-right: $badge-pill-padding-x;
+  padding-left: $badge-pill-padding-x;
+  @include border-radius($badge-pill-border-radius);
+}
+
+@each $name, $color in map-merge($colors, ('white': $color-white)) {
+  .badge-#{$name}:not(.badge-label) {
+    color: color-yiq($color);
+    background-color: $color;
+  }
+  .badge-label.badge-#{$name} {
+    color: $color;
+    background-color: lighten($color, $btn-light-bg-amount);
+  }
+  .badge-#{$name} {
+    @at-root a#{&} {
+      @include hover-focus() {
+        color: color-yiq($color);
+        background-color: color-tint-modify($color, $badge-hover-bg-amount);
+      }
+    }
+    @include focus() {
+      outline: 0;
+      box-shadow: 0 0 0 $badge-focus-width rgba($color, $badge-focus-amount);
+    }
+  }
+}

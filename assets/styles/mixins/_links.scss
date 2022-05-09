@@ -1,0 +1,7 @@
+@mixin link($color, $hover-color: $color) {
+  color: $color;
+
+  @include hover-focus() {
+    color: color-tint-modify($hover-color, $link-hover-color-amount);
+  }
+}

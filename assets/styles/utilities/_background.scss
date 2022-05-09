@@ -1,0 +1,35 @@
+@each $name, $color in $colors {
+  @include bg-variant('.bg-#{$name}', $color);
+}
+
+@each $name, $color in $brands-colors {
+  @include bg-variant('.bg-brand-#{$name}', $color);
+}
+
+@each $name, $color in $colors {
+  @if $enable-gradients {
+    @include bg-gradient-variant('.bg-gradient-#{$name}', $color);
+  } @else {
+    @include bg-variant('.bg-gradient-#{$name}', $color);
+  }
+}
+
+@each $name, $color in $brands-colors {
+  @if $enable-gradients {
+    @include bg-gradient-variant('.bg-gradient-brand-#{$name}', $color);
+  } @else {
+    @include bg-variant('.bg-gradient-brand-#{$name}', $color);
+  }
+}
+
+.bg-white {
+  background-color: $color-white !important;
+}
+
+.bg-black {
+  background-color: $color-black !important;
+}
+
+.bg-transparent {
+  background-color: transparent !important;
+}

@@ -1,0 +1,56 @@
+// Color contrast
+@function color-yiq($color, $dark: $yiq-text-dark, $light: $yiq-text-light) {
+  $r: red($color);
+  $g: green($color);
+  $b: blue($color);
+
+  $yiq: calc((($r * 299) + ($g * 587) + ($b * 114)) / 1000);
+
+  @if ($yiq >= $yiq-contrasted-threshold) {
+    @return $dark;
+  } @else {
+    @return $light;
+  }
+}
+
+// Retrieve color Sass maps
+@function color($color-name) {
+  @return map-get($colors, $color-name);
+}
+
+@function brand-color($color-name) {
+  @return map-get($brands-colors, $color-name);
+}
+
+// Request a color level
+@function color-level($color, $level: 0) {
+  $color-base: if($level > 0, $color-black, $color-white);
+  $level: abs($level);
+
+  @return mix($color-base, $color, $level * $color-interval);
+}
+
+// Detect color tint
+@function color-tint($light, $dark) {
+  @if $enable-lighten {
+    @return $light;
+  } @else {
+    @return $dark;
+  }
+}
+
+@function color-tint-modals($light, $dark) {
+  @if $enable-modals-lighten {
+    @return $light;
+  } @else {
+    @return $dark;
+  }
+}
+
+@function color-tint-modify($color, $amount: $color-hover-amount) {
+  @if $color == color('muted') {
+    $color: color('primary');
+  }
+
+  @return color-tint(lighten($color, $amount), darken($color, $amount));
+}

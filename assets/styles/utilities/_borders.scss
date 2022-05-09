@@ -1,0 +1,70 @@
+.border         { border: $border-width solid $border-color !important; }
+.border-top     { border-top: $border-width solid $border-color !important; }
+.border-right   { border-right: $border-width solid $border-color !important; }
+.border-bottom  { border-bottom: $border-width solid $border-color !important; }
+.border-left    { border-left: $border-width solid $border-color !important; }
+
+.border-0         { border-width: 0 !important; }
+.border-top-0     { border-top-width: 0 !important; }
+.border-right-0   { border-right-width: 0 !important; }
+.border-bottom-0  { border-bottom-width: 0 !important; }
+.border-left-0    { border-left-width: 0 !important; }
+
+@each $multiplier in $border-width-multipliers {
+  .border-#{$multiplier}        { border-width: calc(#{$border-width} * #{$multiplier}) !important; }
+  .border-top-#{$multiplier}    { border-top-width: calc(#{$border-width} * #{$multiplier}) !important; }
+  .border-right-#{$multiplier}  { border-right-width: calc(#{$border-width} * #{$multiplier}) !important; }
+  .border-bottom-#{$multiplier} { border-bottom-width: calc(#{$border-width} * #{$multiplier}) !important; }
+  .border-left-#{$multiplier}   { border-left-width: calc(#{$border-width} * #{$multiplier}) !important; }
+}
+
+@each $name, $color in $colors {
+  .border-#{$name} {
+    border-color: $color !important;
+  }
+}
+
+// Border Radius
+.rounded-sm {
+  border-radius: $border-radius-sm !important;
+}
+
+.rounded {
+  border-radius: $border-radius !important;
+}
+
+.rounded-top {
+  border-top-left-radius: $border-radius !important;
+  border-top-right-radius: $border-radius !important;
+}
+
+.rounded-right {
+  border-top-right-radius: $border-radius !important;
+  border-bottom-right-radius: $border-radius !important;
+}
+
+.rounded-bottom {
+  border-bottom-right-radius: $border-radius !important;
+  border-bottom-left-radius: $border-radius !important;
+}
+
+.rounded-left {
+  border-top-left-radius: $border-radius !important;
+  border-bottom-left-radius: $border-radius !important;
+}
+
+.rounded-lg {
+  border-radius: $border-radius-lg !important;
+}
+
+.rounded-circle {
+  border-radius: 50% !important;
+}
+
+.rounded-pill {
+  border-radius: $border-rounded-pill !important;
+}
+
+.rounded-0 {
+  border-radius: 0 !important;
+}

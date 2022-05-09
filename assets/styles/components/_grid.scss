@@ -1,0 +1,129 @@
+// Container widths
+.container,
+.container-fluid {
+  @include make-container();
+}
+
+// Responsive containers that are 100% wide until a breakpoint
+@each $breakpoint, $container-max-width in $container-max-widths {
+  .container-#{$breakpoint} {
+    @extend .container-fluid;
+  }
+
+  @include media-breakpoint-up($breakpoint, $grid-breakpoints) {
+    %responsive-container-#{$breakpoint} {
+      max-width: $container-max-width;
+    }
+
+    // Extend each breakpoint which is smaller or equal to the current breakpoint
+    $extend-breakpoint: true;
+
+    @each $name, $width in $grid-breakpoints {
+      @if ($extend-breakpoint) {
+        .container#{breakpoint-infix($name, $grid-breakpoints)} {
+          @extend %responsive-container-#{$breakpoint};
+        }
+
+        // Once the current breakpoint is reached, stop extending
+        @if ($breakpoint == $name) {
+          $extend-breakpoint: false;
+        }
+      }
+    }
+  }
+}
+
+
+// Container content
+.container-wrapper {
+  @include make-row();
+
+  .container-full,
+  .container-main,
+  .container-sidebar {
+    flex: 0 0 100%;
+    max-width: 100%;
+    padding-left: calc($grid-gutter-width / 2);
+    padding-right: calc($grid-gutter-width / 2);
+  }
+  .container-main + .container-sidebar {
+    margin-top: $grid-gutter-width;
+  }
+  .container-sidebar + .container-main {
+    margin-top: $grid-gutter-width;
+  }
+}
+
+@each $breakpoint, $columns in $container-main-columns {
+  @include media-breakpoint-up($breakpoint, $grid-breakpoints) {
+    @if $columns < $grid-columns {
+      .container-wrapper {
+        .container-main {
+          flex: 0 0 #{calc(100% / $grid-columns) * $columns};
+          max-width: calc(100% / $grid-columns) * $columns;
+          margin-top: 0 !important;
+          margin-left: auto;
+          margin-right: auto;
+        }
+        .container-sidebar {
+          flex: 0 0 #{calc(100% / $grid-columns) * ($grid-columns - $columns)};
+          max-width: calc(100% / $grid-columns) * ($grid-columns - $columns);
+          margin-top: 0 !important;
+        }
+      }
+    }
+  }
+}
+
+
+// Grid
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: - $grid-gutter-width;
+  margin-left: - $grid-gutter-width;
+
+  & > * {
+    flex-basis: calc(100% - #{$grid-gutter-width});
+    margin-top: $grid-gutter-width;
+    margin-left: $grid-gutter-width;
+
+    &:last-child {
+      margin-right: auto;
+    }
+  }
+}
+
+@each $breakpoint in map-keys($grid-breakpoints) {
+  @include media-breakpoint-up($breakpoint) {
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+    @for $cols from 2 through $grid-columns {
+      .grid.grid#{$infix}-#{$cols} > * {
+        flex-basis: calc((100% - #{$grid-gutter-width} * #{$cols}) / #{$cols});
+      }
+    }
+  }
+}
+
+
+// Row
+.row {
+  @include make-row();
+}
+
+// Remove the negative margin from default .row, then the horizontal padding  from all immediate children columns (to prevent runaway style inheritance)
+.no-gutters {
+  margin-right: 0;
+  margin-left: 0;
+
+  & > .col,
+  & > [class*="col-"] {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+
+// Columns
+@include make-grid-columns();

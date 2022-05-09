@@ -1,0 +1,3 @@
+@function spacer($value: 0) {
+  @return if($value == 0, $spacer, map-get($spacers, $value));
+}

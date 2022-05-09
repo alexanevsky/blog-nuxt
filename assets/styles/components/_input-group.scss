@@ -1,0 +1,157 @@
+.input-group {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  width: 100%;
+
+  & > .form-input,
+  & > .form-plain {
+    position: relative;
+    flex: 1 1 auto;
+    width: 1%;
+    min-width: 0;
+    margin-bottom: 0;
+
+    & + .form-input,
+    & + .form-plain {
+      margin-left: -$form-widget-border-width;
+    }
+
+    // Bring the "active" form control to the top of surrounding elements
+    @include focus() {
+      z-index: 3;
+    }
+
+    &:not(:first-child) {
+      @include border-left-radius(0);
+    }
+  }
+
+  &:not(.has-validation) {
+    & > .form-input {
+      &:not(:last-child) {
+        @include border-right-radius(0);
+      }
+    }
+  }
+
+  &.has-validation {
+    & > .form-input {
+      &:nth-last-child(n + 3) {
+        @include border-right-radius(0);
+      }
+    }
+  }
+}
+
+
+// Prepend and append
+.input-group-prepend,
+.input-group-append {
+  display: flex;
+
+  .btn {
+    position: relative;
+    z-index: 2;
+
+    &:focus {
+      z-index: 3;
+    }
+    &:not(:focus) {
+      @include box-shadow(none !important);
+    }
+  }
+
+  .btn + .btn,
+  .btn + .input-group-text,
+  .input-group-text + .input-group-text,
+  .input-group-text + .btn {
+    margin-left: -$form-widget-border-width;
+  }
+}
+
+.input-group-prepend {
+  margin-right: -$form-widget-border-width;
+}
+.input-group-append {
+  margin-left: -$form-widget-border-width;
+}
+
+
+// Textual addons
+.input-group-text {
+  display: flex;
+  align-items: center;
+  padding: $form-widget-padding-y $form-widget-padding-x;
+  margin-bottom: 0;
+  @include font-size($form-widget-font-size);
+  font-weight: $font-weight-normal;
+  line-height: $form-widget-line-height;
+  color: $form-input-group-addon-color;
+  text-align: center;
+  white-space: nowrap;
+  background-color: $form-input-group-addon-bg;
+  border: $form-widget-border-width solid $form-input-group-addon-border-color;
+  @include border-radius($form-widget-border-radius);
+
+  // Nuke default margins from checkboxes and radios to vertically center within.
+  input[type="radio"],
+  input[type="checkbox"] {
+    margin-top: 0;
+  }
+}
+
+
+// Sizing
+.input-group-lg > .form-input {
+  height: $form-widget-height-lg;
+}
+
+.input-group-lg > .form-input,
+.input-group-lg > .input-group-prepend > .input-group-text,
+.input-group-lg > .input-group-append > .input-group-text,
+.input-group-lg > .input-group-prepend > .btn,
+.input-group-lg > .input-group-append > .btn {
+  padding: $form-widget-padding-y-lg $form-widget-padding-x-lg;
+  @include font-size($form-widget-font-size-lg);
+  line-height: $form-widget-line-height-lg;
+  @include border-radius($form-widget-border-radius-lg);
+}
+
+.input-group-sm > .form-input {
+  height: $form-widget-height-sm;
+}
+
+.input-group-sm > .form-input,
+.input-group-sm > .input-group-prepend > .input-group-text,
+.input-group-sm > .input-group-append > .input-group-text,
+.input-group-sm > .input-group-prepend > .btn,
+.input-group-sm > .input-group-append > .btn {
+  padding: $form-widget-padding-y-sm $form-widget-padding-x-sm;
+  @include font-size($form-widget-font-size-sm);
+  line-height: $form-widget-line-height-sm;
+  @include border-radius($form-widget-border-radius-sm);
+}
+
+
+// Prepend and append rounded corners
+.input-group > .input-group-prepend > .btn,
+.input-group > .input-group-prepend > .input-group-text,
+.input-group:not(.has-validation) > .input-group-append:not(:last-child) > .btn,
+.input-group:not(.has-validation) > .input-group-append:not(:last-child) > .input-group-text,
+.input-group.has-validation > .input-group-append:nth-last-child(n + 3) > .btn,
+.input-group.has-validation > .input-group-append:nth-last-child(n + 3) > .input-group-text,
+.input-group > .input-group-append:last-child > .btn:not(:last-child),
+.input-group > .input-group-append:last-child > .input-group-text:not(:last-child) {
+  @include border-right-radius(0);
+}
+
+.input-group > .input-group-append > .btn,
+.input-group > .input-group-append > .input-group-text,
+.input-group > .input-group-prepend:not(:first-child) > .btn,
+.input-group > .input-group-prepend:not(:first-child) > .input-group-text,
+.input-group > .input-group-prepend:first-child > .btn:not(:first-child),
+.input-group > .input-group-prepend:first-child > .input-group-text:not(:first-child) {
+  @include border-left-radius(0);
+}

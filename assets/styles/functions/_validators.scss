@@ -1,0 +1,15 @@
+@function not-empty($value) {
+  @if $value and $value != 0 and $value != false and $value != none and $value != null and $value != '' and $value != '0' and $value != 'false' and $value != 'none' and $value != 'null' {
+    @return true;
+  } @else {
+    @return false;
+  }
+}
+
+@function is-color($value) {
+  @if not-empty($value) and $value != 'transparent' and $value != transparent {
+    @return true;
+  } @else {
+    @return false;
+  }
+}

@@ -1,0 +1,172 @@
+.table {
+  width: 100%;
+  color: $table-color;
+  background-color: $table-bg;
+
+  th,
+  td {
+    padding: $table-cell-padding;
+    vertical-align: top;
+    border-top: $table-border-width solid $table-border-color;
+  }
+
+  thead {
+    th {
+      vertical-align: bottom;
+    }
+    tr:last-child th {
+      border-bottom: (2 * $table-border-width) solid $table-border-color;
+    }
+  }
+  tfoot {
+    th {
+      vertical-align: top;
+    }
+    tr:first-child th {
+      border-top: (2 * $table-border-width) solid $table-border-color;
+    }
+  }
+
+  tbody + tbody {
+    border-top: (2 * $table-border-width) solid $table-border-color;
+  }
+  th {
+    font-weight: $table-th-font-weight;
+  }
+  thead,
+  tbody {
+    &:first-child tr:first-child {
+      th,
+      td {
+        border-top: none;
+      }
+    }
+  }
+}
+
+.table-sm {
+  th,
+  td {
+    padding: $table-cell-padding-sm;
+  }
+}
+
+th,
+td {
+  &.table-sm {
+    width: 1%;
+    white-space: nowrap;
+  }
+}
+
+
+// Border versions
+.table-bordered {
+  border: $table-border-width solid $table-border-color;
+
+  th,
+  td {
+    border: $table-border-width solid $table-border-color !important;
+  }
+
+  thead {
+    th,
+    td {
+      border-bottom-width: 2 * $table-border-width !important;
+    }
+  }
+}
+
+.table-borderless {
+  th,
+  td,
+  thead th,
+  tbody + tbody {
+    border: 0;
+  }
+}
+
+.table-striped {
+  tbody tr:nth-of-type(#{$table-striped-order}) {
+    background-color: $table-accent-bg;
+  }
+}
+
+
+// Colors variants
+@each $name, $color in $colors {
+  .table-#{$name} {
+    &,
+    th,
+    td {
+      background-color: color-level($color, $table-bg-level);
+      border-color: color-level($color, $table-border-level) !important;
+    }
+    & + tr {
+      th,
+      td {
+        border-color: color-level($color, $table-border-level) !important;
+      }
+    }
+  }
+}
+
+
+// Hover effect
+.table-hover tr,
+tr.table-hover {
+  &,
+  th,
+  td {
+    @include transition(background-color $transition-properties);
+  }
+  &:hover,
+  &.hover {
+    &,
+    th,
+    td {
+      color: $table-hover-color;
+      background-color: $table-hover-bg;
+    }
+  }
+}
+
+
+// Alignments
+@each $alignment in $table-alignments {
+  .table-align-#{$alignment} {
+    th,
+    td {
+      vertical-align: $alignment !important;
+    }
+  }
+}
+
+
+// Responsive tables
+.table-responsive {
+  @each $breakpoint in map-keys($grid-breakpoints) {
+    $next: breakpoint-next($breakpoint, $grid-breakpoints);
+    $infix: breakpoint-infix($next, $grid-breakpoints);
+
+    &#{$infix} {
+      @include media-breakpoint-down($breakpoint) {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+
+        & > .table-bordered {
+          border: 0;
+        }
+      }
+    }
+  }
+}
+
+
+// Empty elements
+.table-empty {
+  font-size: $table-empty-font-size;
+  text-align: $table-empty-align;
+  color: $table-empty-color;
+}

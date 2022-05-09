@@ -1,0 +1,229 @@
+// Select
+.form-select {
+  position: relative;
+
+  // Field
+  .form-select-field {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: $form-widget-height;
+    padding: $form-widget-padding-y $form-widget-padding-x;
+    padding-right: $form-widget-padding-x * 2 + $form-widget-font-size * $form-widget-line-height;
+    font-family: $form-widget-font-family;
+    @include font-size($form-widget-font-size);
+    font-weight: $form-widget-font-weight;
+    line-height: $form-widget-line-height;
+    color: $form-widget-color;
+    background-color: $form-widget-bg;
+    background-clip: padding-box;
+    border: $form-widget-border-width solid $form-widget-border-color;
+    cursor: pointer;
+    @include border-radius($form-widget-border-radius, 0);
+    @include box-shadow($form-select-box-shadow);
+    @include transition($form-widget-transition);
+
+    @include form-input-focus();
+
+    @each $name, $color in $colors {
+      &.form-focus-#{$name} {
+        @include form-input-focus($color);
+      }
+    }
+
+    .form-select-field-placeholder,
+    .form-select-field-value {
+      @include text-truncate();
+    }
+
+    .form-select-field-placeholder {
+      color: $form-widget-placeholder-color;
+    }
+
+    .form-select-field-toggler {
+      position: absolute;
+      right: $form-widget-padding-x;
+      top: 50%;
+      transform: translateY(calc(-50% + 1px));
+      color: $form-select-toggler-color;
+      @include transition($link-transition);
+
+      .form-select-field-icon {
+        @include transition($caret-transition);
+      }
+    }
+
+    @include hover-focus() {
+      .form-select-field-toggler {
+        color: color-tint-modify($form-select-toggler-color, $color-hover-amount);
+      }
+    }
+  }
+
+  // Dropdown
+  .form-select-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: $z-index-dropdown;
+    display: none;
+    float: left;
+    min-width: $dropdown-min-width;
+    padding: $dropdown-padding-y $dropdown-padding-x;
+    margin: $dropdown-spacer 0 0;
+    @include font-size($dropdown-font-size);
+    color: $dropdown-color;
+    text-align: left;
+    list-style: none;
+    background-color: $dropdown-bg;
+    background-clip: padding-box;
+    border: $dropdown-border-width solid $dropdown-border-color;
+    @include border-radius($dropdown-border-radius);
+    @include box-shadow($dropdown-box-shadow);
+  }
+
+  .form-select-dropdown-togglers {
+    display: flex !important;
+    margin: 0 $dropdown-item-padding-x $dropdown-item-padding-y;
+  }
+
+  .form-select-dropdown-reset,
+  .form-select-dropdown-item {
+    position: relative;
+    display: block;
+    width: 100%;
+    padding: $dropdown-item-padding-y $dropdown-item-padding-x;
+    clear: both;
+    font-weight: $font-weight-normal;
+    font-size: $dropdown-font-size;
+    line-height: $dropdown-line-height;
+    text-align: inherit;
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+    @include transition($link-transition);
+    outline: 0;
+  }
+
+  .form-select-dropdown-reset {
+    color: $form-select-reset-color;
+  }
+
+  .form-select-dropdown-item {
+    @if $dropdown-padding-y == 0 {
+      &:first-child {
+        @include border-top-radius($dropdown-inner-border-radius);
+      }
+
+      &:last-child {
+        @include border-bottom-radius($dropdown-inner-border-radius);
+      }
+    }
+
+    .form-select-dropdown-icon {
+      position: absolute;
+      top: $dropdown-item-padding-y;
+      left: $form-select-dropdown-icon-margin;
+      width: $form-select-dropdown-icon-font-size * 1.5;
+      text-align: center;
+      @include font-size($form-select-dropdown-icon-font-size);
+      line-height: $dropdown-font-size * $dropdown-line-height;
+      color: $form-select-dropdown-icon-color;
+      opacity: 0;
+      transition: $form-select-dropdown-icon-transition;
+    }
+
+    @include hover-focus() {
+      background-color: $dropdown-hover-bg;
+      color: $dropdown-hover-color;
+    }
+  }
+
+  &:not(.form-select-multiple) {
+    .form-select-dropdown-item {
+      &.selected {
+        background-color: $dropdown-active-bg;
+        color: $dropdown-active-color;
+      }
+    }
+  }
+
+  // Multiple select
+  &.form-select-multiple {
+    .form-select-dropdown-togglers {
+      margin-left: $form-select-dropdown-icon-margin * 2 + $form-select-dropdown-icon-font-size * 1.5;
+      margin-right: $form-select-dropdown-icon-margin * 2 + $form-select-dropdown-icon-font-size * 1.5;
+    }
+    .form-select-dropdown-item {
+      padding-left: calc($form-select-dropdown-icon-margin * 2 + $form-select-dropdown-icon-font-size * 1.5);
+      padding-right: calc($form-select-dropdown-icon-margin * 2 + $form-select-dropdown-icon-font-size * 1.5);
+
+      &.selected {
+        .form-select-dropdown-icon {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  // Opened select
+  &.opened {
+    .form-select-field-icon {
+      transform: rotate(180deg);
+    }
+  }
+
+  // Sizes
+  &.form-select-sm {
+    .form-select-field {
+      height: $form-widget-height-sm;
+      padding: $form-widget-padding-y-sm $form-widget-padding-x-sm;
+      @include font-size($form-widget-font-size-sm);
+      line-height: $form-widget-line-height-sm;
+      @include border-radius($form-widget-border-radius-sm);
+    }
+    .form-select-dropdown {
+      padding: $dropdown-padding-y-sm $dropdown-padding-x-sm;
+
+    }
+    .form-select-dropdown-item {
+      padding-top: $dropdown-item-padding-y-sm;
+      padding-bottom: $dropdown-item-padding-y-sm;
+      font-size: $dropdown-font-size-sm;
+      line-height: $dropdown-line-height-sm;
+    }
+    &:not(.form-select-multiple) {
+      .form-select-dropdown-item {
+        padding-right: $dropdown-item-padding-x-sm;
+        padding-left: $dropdown-item-padding-x-sm;
+      }
+    }
+  }
+
+  &.form-select-lg {
+    .form-select-field {
+      height: $form-widget-height-lg;
+      padding: $form-widget-padding-y-lg $form-widget-padding-x-lg;
+      @include font-size($form-widget-font-size-lg);
+      line-height: $form-widget-line-height-lg;
+      @include border-radius($form-widget-border-radius-lg);
+    }
+    .form-select-dropdown {
+      padding: $dropdown-padding-y-lg $dropdown-padding-x-lg;
+
+    }
+    .form-select-dropdown-item {
+      padding-top: $dropdown-item-padding-y-lg;
+      padding-bottom: $dropdown-item-padding-y-lg;
+      font-size: $dropdown-font-size-lg;
+      line-height: $dropdown-line-height-lg;
+    }
+    &:not(.form-select-multiple) {
+      .form-select-dropdown-item {
+        padding-right: $dropdown-item-padding-x-lg;
+        padding-left: $dropdown-item-padding-x-lg;
+      }
+    }
+  }
+}

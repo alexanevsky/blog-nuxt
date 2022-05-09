@@ -1,0 +1,5 @@
+@each $alignment in $alignments {
+  .align-#{$alignment} {
+    vertical-align: $alignment !important;
+  }
+}

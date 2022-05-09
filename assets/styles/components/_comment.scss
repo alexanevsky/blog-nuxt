@@ -1,0 +1,67 @@
+.comment {
+  & + .comment {
+    margin-top: $comment-margin;
+  }
+  .comment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: $comment-inner-margin;
+  }
+  .comment-toolbar {
+    display: flex;
+    align-items: center;
+
+    & > *:not(:first-child) {
+      margin-left: $comment-toolbar-spacer;
+    }
+  }
+  .comment-date {
+    font-size: $comment-date-font-size;
+    color: $comment-date-color;
+  }
+  .comment-footer {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: $comment-inner-margin;
+
+    .comment-footer-link-group {
+      display: flex;
+
+      & > *:not(:first-child) {
+        margin-left: $comment-toolbar-spacer;
+      }
+    }
+    .comment-footer-link {
+      font-weight: $comment-footer-link-font-weight;
+      font-size: $comment-footer-link-font-size;
+      color: $comment-footer-link-color;
+
+      @include hover-focus() {
+        color: color-tint-modify($comment-footer-link-color, $link-hover-color-amount);
+      }
+    }
+  }
+  .comment-reply,
+  .comment-replies {
+    padding-left: $comment-margin;
+
+    &:not(:empty) {
+      margin-top: $comment-margin;
+    }
+  }
+}
+
+@include media-breakpoint-up(md) {
+  .comment {
+    .comment-info {
+      flex-direction: row;
+      align-items: center;
+
+      .comment-date {
+        margin-left: $comment-inner-margin * 2;
+      }
+    }
+  }
+}

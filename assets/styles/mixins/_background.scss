@@ -1,0 +1,17 @@
+@mixin bg-variant($selector, $color) {
+  #{$selector} {
+    background-color: $color !important;
+  }
+  a#{$selector},
+  button#{$selector} {
+    @include hover-focus() {
+      background-color: color-tint-modify($color) !important;
+    }
+  }
+}
+
+@mixin bg-gradient-variant($selector, $color) {
+  #{$selector} {
+    background: $color linear-gradient(180deg, mix($body-bg, $color, 15%), $color) repeat-x !important;
+  }
+}

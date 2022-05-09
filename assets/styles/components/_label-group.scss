@@ -1,0 +1,112 @@
+.label-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+
+  .label,
+  .userlabel {
+    &:not(:last-child) {
+      margin-bottom: $label-group-spacer-y;
+    }
+  }
+}
+
+
+// Horizonal label group
+@each $breakpoint in map-keys($grid-breakpoints) {
+  @include media-breakpoint-up($breakpoint) {
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+    .label-group#{$infix}-horizontal,
+    .label-group#{$infix}-m-top,
+    .label-group#{$infix}-m-bottom {
+      .label,
+      .userlabel {
+        &:not(:last-child) {
+          margin-right: $label-group-spacer-x;
+        }
+      }
+    }
+
+    .label-group#{$infix}-horizontal {
+      flex-direction: row;
+
+      .label,
+      .userlabel {
+        &:not(:last-child) {
+          margin-bottom: 0;
+        }
+      }
+    }
+    .label-group#{$infix}-m-top,
+    .label-group#{$infix}-m-bottom {
+      flex-wrap: wrap;
+      flex-direction: row;
+    }
+    .label-group#{$infix}-m-top {
+      margin-top: - $label-group-spacer-y !important;
+
+      .label,
+      .userlabel {
+        margin-top: $label-group-spacer-y !important;
+        margin-bottom: 0 !important;
+      }
+    }
+    .label-group#{$infix}-m-bottom {
+      margin-bottom: - $label-group-spacer-y !important;
+
+      .label,
+      .userlabel {
+        margin-top: 0 !important;
+        margin-bottom: $label-group-spacer-y !important;
+      }
+    }
+  }
+}
+
+
+// Sizes
+.label-group-sm {
+  @extend .label-sm;
+  @extend .userlabel-sm;
+
+  @each $breakpoint in map-keys($grid-breakpoints) {
+    @include media-breakpoint-up($breakpoint) {
+      $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+      &.label-group#{$infix}-horizontal,
+      &.label-group#{$infix}-m-top,
+      &.label-group#{$infix}-m-bottom {
+        .label,
+        .userlabel {
+          &:not(:last-child) {
+            margin-right: $label-group-spacer-x-sm;
+          }
+        }
+      }
+    }
+  }
+}
+
+.label-group-lg {
+  @extend .label-lg;
+  @extend .userlabel-lg;
+
+  @each $breakpoint in map-keys($grid-breakpoints) {
+    @include media-breakpoint-up($breakpoint) {
+      $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+      &.label-group#{$infix}-horizontal,
+      &.label-group#{$infix}-m-top,
+      &.label-group#{$infix}-m-bottom {
+        .label,
+        .userlabel {
+          &:not(:last-child) {
+            margin-right: $label-group-spacer-x-lg;
+          }
+        }
+      }
+    }
+  }
+}

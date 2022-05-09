@@ -1,0 +1,27 @@
+.alert {
+  position: relative;
+  padding: $alert-padding-y $alert-padding-x;
+  border: $alert-border-width solid transparent;
+  @include border-radius($alert-border-radius);
+}
+
+// Colors variants
+@each $name, $color in $colors {
+  .alert-#{$name} {
+    background-color: color-level($color, $alert-bg-level);
+    @include gradient-bg(color-level($color, $alert-bg-level));
+    border-color: color-level($color, $alert-border-level);
+    color: color-level($color, $alert-color-level);
+    @include box-shadow($alert-box-shadow-size rgba($color, $alert-box-shadow-amount));
+
+    hr {
+      border-color: color-level($color, $alert-hr-color-level);
+    }
+  }
+
+  .card-body {
+    .alert-#{$name} {
+      @include box-shadow(none);
+    }
+  }
+}

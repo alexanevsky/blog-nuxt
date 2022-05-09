@@ -1,0 +1,196 @@
+.btn {
+  display: inline-block;
+  @include button();
+}
+
+
+// Buttons sizes
+.btn-split {
+  padding-left: $btn-padding-x * $btn-split-scale;
+  padding-right: $btn-padding-x * $btn-split-scale;
+}
+
+.btn-lg {
+  @include button-size-lg();
+
+  &.btn-split {
+    padding-left: $btn-padding-x-lg * $btn-split-scale;
+    padding-right: $btn-padding-x-lg * $btn-split-scale;
+  }
+}
+
+.btn-sm {
+  @include button-size-sm();
+
+  &.btn-split {
+    padding-left: $btn-padding-x-sm * $btn-split-scale;
+    padding-right: $btn-padding-x-sm * $btn-split-scale;
+  }
+}
+
+
+// Buttons colors variants
+@each $name, $color in $colors {
+  .btn-#{$name} {
+    @include button-variant($color);
+  }
+}
+
+@each $name, $color in $brands-colors {
+  .btn-brand-#{$name} {
+    @include button-variant($color);
+  }
+}
+
+@each $name, $color in $colors {
+  .btn-outline-#{$name} {
+    @include button-outline-variant($color);
+  }
+}
+
+@each $name, $color in $brands-colors {
+  .btn-outline-brand-#{$name} {
+    @include button-outline-variant($color);
+  }
+}
+
+@each $name, $color in $colors {
+  .btn-light-#{$name} {
+    @include button-light-variant($color);
+  }
+}
+
+@each $name, $color in $brands-colors {
+  .btn-light-brand-#{$name} {
+    @include button-light-variant($color);
+  }
+}
+
+@each $name, $color in $colors {
+  .btn-transparent-#{$name} {
+    @include button-transparent-variant($color);
+  }
+}
+
+@each $name, $color in $brands-colors {
+  .btn-transparent-brand-#{$name} {
+    @include button-transparent-variant($color);
+  }
+}
+
+@each $name, $color in $colors {
+  .btn-text-#{$name} {
+    @include button-text-variant($color);
+  }
+}
+
+@each $name, $color in $brands-colors {
+  .btn-text-brand-#{$name} {
+    @include button-text-variant($color);
+  }
+}
+
+@each $name, $color in $colors {
+  .btn-hover-#{$name} {
+    @include button-hover-variant($color, true);
+  }
+}
+
+@each $name, $color in $brands-colors {
+  .btn-hover-brand-#{$name} {
+    @include button-hover-variant($color);
+  }
+}
+
+@each $name, $color in $colors {
+  .btn-#{$name}.btn-shadow {
+    @include box-shadow($btn-box-shadow-size rgba($color, $btn-box-shadow-amount));
+
+    @include hover() {
+      @include box-shadow($btn-box-shadow-hover-size rgba($color, $btn-box-shadow-hover-amount));
+    }
+  }
+}
+
+@each $name, $color in $brands-colors {
+  .btn-brand-#{$name}.btn-shadow {
+    @include box-shadow($btn-box-shadow-size rgba($color, $btn-box-shadow-amount));
+
+    @include hover() {
+      @include box-shadow($btn-box-shadow-hover-size rgba($color, $btn-box-shadow-hover-amount));
+    }
+  }
+}
+
+.btn-readmore {
+  white-space: nowrap;
+
+  @if $btn-readmore-outline {
+    @include button-outline-variant($btn-readmore-color);
+  } @else {
+    @include button-variant($btn-readmore-color);
+  }
+
+  .btn-readmore-icon {
+    &:not(:first-child) {
+      margin-left: $btn-readmore-icon-spacer;
+    }
+    &:not(:last-child) {
+      margin-right: $btn-readmore-icon-spacer;
+    }
+  }
+}
+
+
+// Shadow
+.btn-shadow-none,
+.btn-group.btn-shadow-none .btn,
+.btn-toolbar.btn-shadow-none .btn {
+  &:not(:focus):not(.focus) {
+    box-shadow: none !important;
+  }
+}
+
+@each $style in $btn-outline-border-styles {
+  .btn-outline-#{$style} {
+    border-style: $style;
+
+    @include hover-focus-active() {
+      border-style: solid;
+    }
+  }
+}
+
+
+// Style
+.btn.btn-pill {
+  @include border-radius($btn-pill-border-radius);
+}
+
+.btn.btn-icon {
+  i,
+  svg {
+    transform: scale($btn-icon-scale);
+  }
+}
+
+
+// Blocks
+.btn-block {
+  display: block;
+  width: 100%;
+
+  // Vertically space out multiple block buttons
+  & + .btn-block {
+    margin-top: $btn-block-spacing-y;
+  }
+}
+
+// Specificity overrides
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+  &.btn-block {
+    width: 100%;
+  }
+}

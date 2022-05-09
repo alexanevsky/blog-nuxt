@@ -1,0 +1,4 @@
+.shadow-sm      { @include box-shadow($box-shadow-sm !important); }
+.shadow         { @include box-shadow($box-shadow !important); }
+.shadow-lg      { @include box-shadow($box-shadow-lg !important); }
+.shadow-none    { @include box-shadow(none !important); }

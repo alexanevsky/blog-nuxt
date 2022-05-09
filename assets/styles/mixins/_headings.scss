@@ -1,0 +1,29 @@
+@mixin heading($h) {
+  @if not-empty($headings-font-family) {
+    font-family: $headings-font-family;
+  }
+  font-weight: $headings-font-weight;
+  line-height: $headings-line-height;
+  color: $headings-color;
+
+  @if $h == 'h1' or $h == 1 {
+    @include h1();
+  } @else if $h == 'h2' or $h == 2 {
+    @include h2();
+  } @else if $h == 'h3' or $h == 3 {
+    @include h3();
+  } @else if $h == 'h4' or $h == 4 {
+    @include h4();
+  } @else if $h == 'h5' or $h == 5 {
+    @include h5();
+  } @else if $h == 'h6' or $h == 6 {
+    @include h6();
+  }
+}
+
+@mixin h1() { @include font-size($heading-1-font-size); }
+@mixin h2() { @include font-size($heading-2-font-size); }
+@mixin h3() { @include font-size($heading-3-font-size); }
+@mixin h4() { @include font-size($heading-4-font-size); }
+@mixin h5() { @include font-size($heading-5-font-size); }
+@mixin h6() { @include font-size($heading-6-font-size); }
