@@ -17,8 +17,8 @@ export default ({ $axios }, inject) => {
     const apiConfig = config;
 
     const response = await $axios.get(apiUrl, apiConfig)
-      .then(response => new ApiResponse(response))
-      .catch(error => new ApiResponse(error.response));
+      .then((response) => new ApiResponse(response))
+      .catch((error) => new ApiResponse(error.response));
 
     return response;
   }
@@ -29,8 +29,8 @@ export default ({ $axios }, inject) => {
     const apiConfig = config;
 
     const response = $axios.post(apiUrl, apiData, apiConfig)
-      .then(response => new ApiResponse(response))
-      .catch(error => new ApiResponse(error.response));
+      .then((response) => new ApiResponse(response))
+      .catch((error) => new ApiResponse(error.response));
 
     return response;
   }

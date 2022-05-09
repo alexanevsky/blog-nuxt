@@ -1,6 +1,6 @@
 export default async ({ $api }, inject) => {
   const parameters = await $api.get('/config', { flatten: 1 })
-    .then(response => response.data.parameters || {});
+    .then((response) => response.data.parameters || {});
 
   const all = () => {
     return parameters;

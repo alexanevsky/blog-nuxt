@@ -13,13 +13,13 @@ export default({ store }, inject) => {
     },
     mutations: {
       add(state, modal) {
-        if (!state.modals.filter(m => m.id === modal.id).length) {
+        if (!state.modals.filter((m) => m.id === modal.id).length) {
           state.modals.push({ id: modal.id, modal: modal.modal, binds: modal.binds });
         }
       },
 
       remove(state, id) {
-        const index = state.modals.findIndex(modal => modal.id === id);
+        const index = state.modals.findIndex((m) => m.id === id);
 
         if (index >= 0) {
           state.modals.splice(index, 1);
