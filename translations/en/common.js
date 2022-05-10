@@ -1,4 +1,12 @@
 export default {
+  messages: {
+    accessDenied: 'Access denied!',
+    deleted:      'Deleted!',
+    failed:       'Something went wrong...',
+    needAuth:     'Authorization required!',
+    notFound:     'Not found!'
+  },
+
   buttons: {
     cancel: 'Cancel'
   },

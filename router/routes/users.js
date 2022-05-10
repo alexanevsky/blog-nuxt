@@ -30,28 +30,34 @@ export default [
     component:  '~/views/users/usersRemoved.vue'
   },
   {
-    name:       'user',
     path:       '/users/:id(\\w+)',
-    component:  '~/views/users/user.vue'
-  },
-  {
-    name:       'userUpdate',
-    path:       '/users/:id(\\w+)/edit',
-    component:  '~/views/users/userUpdate.vue'
-  },
-  {
-    name:       'userUpdatePassword',
-    path:       '/users/:id(\\w+)/edit/password',
-    component:  '~/views/users/userUpdatePassword.vue'
-  },
-  {
-    name:       'userUpdateBan',
-    path:       '/users/:id(\\w+)/edit/ban',
-    component:  '~/views/users/userUpdateBan.vue'
-  },
-  {
-    name:       'userUpdateRoles',
-    path:       '/users/:id(\\w+)/edit/roles',
-    component:  '~/views/users/userUpdateRoles.vue'
+    component:  '~/views/users/user.vue',
+    children: [
+      {
+        name:       'user',
+        path:       '/users/:id(\\w+)',
+        component:  '~/views/users/user/profile.vue',
+      },
+      {
+        name:       'userUpdate',
+        path:       'edit',
+        component:  '~/views/users/user/update.vue'
+      },
+      {
+        name:       'userUpdatePassword',
+        path:       'edit/password',
+        component:  '~/views/users/user/updatePassword.vue'
+      },
+      {
+        name:       'userUpdateBan',
+        path:       'edit/ban',
+        component:  '~/views/users/user/updateBan.vue'
+      },
+      {
+        name:       'userUpdateRoles',
+        path:       'edit/roles',
+        component:  '~/views/users/user/updateRoles.vue'
+      }
+    ]
   }
 ];

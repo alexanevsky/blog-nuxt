@@ -10,7 +10,7 @@ export default {
   linkActiveClass:      '',
   linkExactActiveClass: '',
 
-  // trailingSlash: false,
+  trailingSlash: false,
 
   scrollBehavior: () => ({ x: 0, y: 0 })
 };
