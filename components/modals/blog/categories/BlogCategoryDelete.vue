@@ -15,12 +15,12 @@
 <script>
 export default {
   props: {
-    category: {
-      type:     Object,
-      required: true
-    },
     id: {
       type:     String,
+      required: true
+    },
+    category: {
+      type:     Object,
       required: true
     }
   },
@@ -30,22 +30,24 @@ export default {
   }),
 
   methods: {
+    close() {
+      this.$refs.modal.close();
+    },
+
     async handleForm() {
       this.isHandling = true;
 
-      let response;
+      const response = await this.$repositories.blogCategories.delete(this.category.id);
 
-      try {
-        response = await this.$repositories.categories.delete(this.category.id);
-      } catch (e) {
-        this.$notify.error(e.message);
+      if (!response.success) {
+        this.$notify.error(response.message);
         this.isHandling = false;
         return;
       }
 
       this.$notify.success(response.message);
       this.isHandling = false;
-      this.$refs.modal.close();
+      this.close();
       this.$nuxt.refresh();
     }
   }

@@ -1,10 +1,13 @@
 import { createIntl, createIntlCache } from '@formatjs/intl';
 
-import flat from '~/utilities/converters/flattenObject';
+import flat from '~/utilities/objects/flat';
 
-import blog     from '~/translations/en/blog';
-import security from '~/translations/en/security';
-import users    from '~/translations/en/users';
+import blog           from '~/translations/en/blog';
+import blogCategories from '~/translations/en/blogCategories';
+import blogPosts      from '~/translations/en/blogPosts';
+import common         from '~/translations/en/common';
+import security       from '~/translations/en/security';
+import users          from '~/translations/en/users';
 
 export default async ({ $api }, inject) => {
   const apiTranslations = await $api.get('/translations/en', { flatten: 0 })
@@ -14,6 +17,9 @@ export default async ({ $api }, inject) => {
   const translations = {
     ...apiTranslations,
     ...flat(blog, 'blog'),
+    ...flat(blogCategories, 'blogCategories'),
+    ...flat(blogPosts, 'blogPosts'),
+    ...flat(common, 'common'),
     ...flat(security, 'security'),
     ...flat(users, 'users')
   }

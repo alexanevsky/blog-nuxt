@@ -12,28 +12,39 @@ class ApiResponse {
 }
 
 export default ({ $axios }, inject) => {
-  const get = async (url, query = {}, config = {}) => {
-    const apiUrl = URL_PREFIX + url + (Object.values(query).length ? (url.includes('?') ? '&' : '?') + new URLSearchParams(query).toString() : '');
-    const apiConfig = config;
+  const request = (method, url, data = {}, config = {}) => {
+    return $axios({
+      method: method,
+      url:    URL_PREFIX + url,
+      data:   data,
+      ...config
+    })
+    .then((response) => new ApiResponse(response))
+    .catch((error) => new ApiResponse(error.response));
+  };
 
-    const response = await $axios.get(apiUrl, apiConfig)
-      .then((response) => new ApiResponse(response))
-      .catch((error) => new ApiResponse(error.response));
+  const get = (url, query = {}, config = {}) => {
+    if (Object.values(query).length) {
+      url = url + (url.includes('?') ? '&' : '?') + new URLSearchParams(query).toString();
+    }
 
-    return response;
+    return request('get', url, {}, config);
   }
 
-  const post = (url, data = {}, config = {}) => {
-    const apiUrl = URL_PREFIX + url;
-    const apiData = data;
-    const apiConfig = config;
+  const post = (url, data = {}, config = {}) => request('post', url, data, config);
 
-    const response = $axios.post(apiUrl, apiData, apiConfig)
-      .then((response) => new ApiResponse(response))
-      .catch((error) => new ApiResponse(error.response));
+  const put = (url, data = {}, config = {}) => request('put', url, data, config);
 
-    return response;
-  }
+  const patch = (url, data = {}, config = {}) => request('patch', url, data, config);
 
-  inject('api', { get, post });
+  const del = (url, data = {}, config = {}) => request('delete', url, data, config);
+
+  inject('api', {
+    request:  request,
+    get:      get,
+    post:     post,
+    put:      put,
+    patch:    patch,
+    delete:   del
+  });
 }

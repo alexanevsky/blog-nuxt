@@ -6,5 +6,6 @@ export default [
   '~/plugins/modals',
   '~/plugins/notify',
   '~/plugins/repositories',
-  '~/plugins/security'
+  '~/plugins/security',
+  '~/plugins/utilities'
 ];

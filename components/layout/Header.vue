@@ -56,7 +56,20 @@ const NAV = [
   {
     to:       { name: 'blogPosts' },
     name:     'blog.title',
-    children: []
+    children: [
+      {
+        to:     { name: 'blogPosts' },
+        name:   'blogPosts.titles.allPosts',
+        roles:  ['ROLE_ADMIN', 'ROLE_BLOG_MANAGER'],
+        exact:  true
+      },
+      {
+        to:     { name: 'blogCategories' },
+        name:   'blogCategories.title',
+        roles:  ['ROLE_ADMIN', 'ROLE_BLOG_MANAGER'],
+        exact:  true
+      }
+    ]
   },
   {
     to:       { name: 'users' },
