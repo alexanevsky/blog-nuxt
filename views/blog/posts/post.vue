@@ -15,6 +15,7 @@
     <LayoutContainerWrapper>
       <component :is="layout === 'fullwidth' ? `LayoutContainerFull` : `LayoutContainerMain`">
         <AppBlogPost :post="post" />
+        <AppBlogComments :post="post" :comments="comments" />
       </component>
       <LayoutContainerSidebar v-if="layout === 'sidebar'" :sticky="true">
         <AppBlogPostSidebar :post="post" />
@@ -26,15 +27,20 @@
 <script>
 export default {
   async asyncData({ params, error, $repositories }) {
-    const response = await $repositories.blogPosts.fetch(params.id);
+    const postResponse = await $repositories.blogPosts.fetch(params.id);
+    const commentsResponse = await $repositories.blogComments.fetchByPost(params.id);
 
-    if (!response.success) {
-      error({statusCode: response.status, message: response.message});
+    if (!postResponse.success) {
+      error({statusCode: postResponse.status, message: postResponse.message});
+      return;
+    } else if (!commentsResponse.success) {
+      error({statusCode: commentsResponse.status, message: commentsResponse.message});
       return;
     }
 
     return {
-      post: response.data.post
+      post:     postResponse.data.post,
+      comments: commentsResponse.data.comments
     };
   },
 

@@ -4,6 +4,7 @@ import flat from '~/utilities/objects/flat';
 
 import blog           from '~/translations/en/blog';
 import blogCategories from '~/translations/en/blogCategories';
+import blogComments   from '~/translations/en/blogComments';
 import blogPosts      from '~/translations/en/blogPosts';
 import common         from '~/translations/en/common';
 import security       from '~/translations/en/security';
@@ -18,6 +19,7 @@ export default async ({ $api }, inject) => {
     ...apiTranslations,
     ...flat(blog, 'blog'),
     ...flat(blogCategories, 'blogCategories'),
+    ...flat(blogComments, 'blogComments'),
     ...flat(blogPosts, 'blogPosts'),
     ...flat(common, 'common'),
     ...flat(security, 'security'),

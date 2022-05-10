@@ -50,8 +50,6 @@ export default {
 
   methods: {
     async handleForm(e) {
-      console.log(e);
-
       this.$router.push({ name: 'blogPost', params: { id: e.post.id } });
     }
   }

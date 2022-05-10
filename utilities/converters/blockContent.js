@@ -25,8 +25,6 @@ const parse = (content) => {
     content = JSON.parse(content);
   }
 
-  console.log(content);
-
   const output = [];
 
   content.forEach((item) => {
