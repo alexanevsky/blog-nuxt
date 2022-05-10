@@ -14,13 +14,13 @@
           class="btn btn-outline-primary w-50"
           :class="isSelectedAll ? 'disabled' : null"
           @click.stop="selectAll(); $event.target.blur()"
-        >Выбрать все</a>
+        >Select all</a>
         <a
           href="#"
           class="btn btn-outline-primary w-50"
           :class="isSelectedNothing ? 'disabled' : null"
           @click.stop="deselectAll(); $event.target.blur()"
-        >Сбросить все</a>
+        >Reset all</a>
       </div>
       <ul class="form-select-dropdown-items">
         <template v-for="(option, i) in options">
@@ -61,7 +61,7 @@ export default {
     },
     placeholder: {
       type:     String,
-      default: 'Ничего не выбрано'
+      default: 'Nothing selected'
     },
     icon: {
       type:     String,
@@ -96,10 +96,10 @@ export default {
       } else if (this.value.length <= this.labelMax) {
         return this.options.filter(o => this.value.includes(o.value)).map(o => o.label).join(', ');
       } else if (this.value.length === this.options.length) {
-        return 'Выбано всё';
+        return 'All selected';
       }
 
-      return `Выбрано ${this.value.length} из ${this.options.length}`;
+      return `Selected ${this.value.length} in ${this.options.length}`;
     },
 
     isSelectedAll() {

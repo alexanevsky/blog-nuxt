@@ -5,7 +5,7 @@
       <LayoutBreadcrumb name="blogCategories.title" to="blogCategories" :active="true" />
     </template>
     <template #toolbar>
-      <ModalButton v-if="$security.isGranted('createBlogCategory')" modal="ModalBlogCategoryForm" class="btn btn-positive" :label="$t('blogCategories.buttons.add')" />
+      <ModalButton v-if="$security.isGranted('createBlogCategory')" modal="ModalBlogCategoryForm" class="btn btn-positive" :label="$t('blogCategories.buttons.create')" />
     </template>
 
     <template v-if="categories.length">

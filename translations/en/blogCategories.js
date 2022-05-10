@@ -23,7 +23,7 @@ export default {
 
   values: {
     inactive:   'Inactive',
-    postsCount: '{count, plural, =0 {No posts} one {# post} other {# posts}}'
+    postsCount: '{count, plural, =0 {No posts} =1 {# post} other {# posts}}'
   },
 
   entityForm: {
@@ -37,8 +37,8 @@ export default {
   },
 
   buttons: {
-    add:    'Add new category',
-    edit:   'Edit category',
+    create: 'Add new category',
+    update: 'Edit',
     delete: 'Delete'
   },
 

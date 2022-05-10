@@ -1,10 +1,8 @@
 <template>
   <LayoutContainer>
     <template #breadcrumbs>
-      <LayoutBreadcrumb name="blog.title" to="blogPosts" :active="true" />
-    </template>
-    <template #toolbar>
-      <NuxtLink v-if="$security.isGranted('createBlogPost')" :to="{name: 'blogPostCreate'}" class="btn btn-positive">{{ $t('blogPosts.buttons.create') }}</NuxtLink>
+      <LayoutBreadcrumb name="blog.title" to="blogPosts" />
+      <LayoutBreadcrumb name="blogPosts.titles.postsUnpublished" to="blogPostsUnpublished" :active="true" />
     </template>
 
     <AppBlogPostsLayout>
@@ -12,7 +10,7 @@
         <AppBlogPostsList :posts="posts" />
       </template>
       <template v-else>
-        <div class="alert alert-muted">{{ $t('blogPosts.messages.empty') }}</div>
+        <div class="alert alert-muted">{{ $t('blogPosts.messages.emptyUnpublished') }}</div>
       </template>
 
       <template #pagination>
@@ -25,7 +23,7 @@
 <script>
 export default {
   async asyncData({ params, error, $repositories }) {
-    const response = await $repositories.blogPosts.fetchAll(params.page || 1);
+    const response = await $repositories.blogPosts.fetchUnpublished(params.page || 1);
 
     if (!response.success) {
       error({statusCode: response.status, message: response.message});
@@ -40,7 +38,7 @@ export default {
 
   head() {
     return {
-      title: this.$t('blog.title')
+      title: this.$t('blogPosts.titles.postsUnpublished')
     }
   }
 };

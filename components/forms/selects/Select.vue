@@ -43,7 +43,7 @@ export default {
     },
     placeholder: {
       type:     String,
-      default: 'Не выбрано'
+      default: 'Nothing selected'
     },
     required: {
       type:     Boolean,
@@ -55,7 +55,7 @@ export default {
     },
     deselect: {
       type:     String,
-      default:  'Сбросить'
+      default:  'Reset'
     }
   },
 
