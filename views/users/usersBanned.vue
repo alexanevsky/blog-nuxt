@@ -2,7 +2,7 @@
   <LayoutContainer>
     <template #breadcrumbs>
       <LayoutBreadcrumb name="users.title" to="users" />
-      <LayoutBreadcrumb name="users.titles.bannedUsers" to="usersBanned" :active="true" />
+      <LayoutBreadcrumb name="users.titles.usersBanned" to="usersBanned" :active="true" />
     </template>
 
     <template v-if="users.length">
