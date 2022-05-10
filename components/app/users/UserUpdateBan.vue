@@ -55,7 +55,7 @@ export default {
       return;
     }
 
-    this.data = this.$utils.object.map(FIELDS_DEFAULTS, (v, k) => response.data.fields[k] ? response.data.fields[k].value : REQUIREMENTS[k]);
+    this.data = this.$utils.object.map(FIELDS_DEFAULTS, (v, k) => response.data.fields[k] ? response.data.fields[k].value : FIELDS_DEFAULTS[k]);
   },
 
   methods: {

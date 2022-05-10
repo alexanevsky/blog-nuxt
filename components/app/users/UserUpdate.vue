@@ -219,7 +219,7 @@ export default {
     }
 
     this.fields =       Object.keys(response.data.fields);
-    this.data =         this.$utils.object.map(FIELDS_DEFAULTS, (v, k) => response.data.fields[k] ? response.data.fields[k].value : REQUIREMENTS[k]);
+    this.data =         this.$utils.object.map(FIELDS_DEFAULTS, (v, k) => response.data.fields[k] ? response.data.fields[k].value : FIELDS_DEFAULTS[k]);
     this.requirements = this.$utils.object.map(FIELDS_DEFAULTS, (v, k) => response.data.fields[k] ? response.data.fields[k].requirements : REQUIREMENTS[k]);
 
     this.$utils.consoleLog(this.data);

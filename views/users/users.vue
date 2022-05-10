@@ -4,6 +4,10 @@
       <LayoutBreadcrumb name="users.title" to="users" :active="true" />
     </template>
 
+    <template #toolbar>
+      <NuxtLink v-if="$security.isGranted('createUser')" :to="{name: 'userCreate'}" class="btn btn-positive">{{ $t('users.buttons.create') }}</NuxtLink>
+    </template>
+
     <AppUsersList :users="users" />
     <UIPaginationRouted :meta="meta" class="mt-5" />
   </LayoutContainer>

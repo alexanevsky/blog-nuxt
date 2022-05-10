@@ -30,6 +30,11 @@ export default [
     component:  '~/views/users/usersRemoved.vue'
   },
   {
+    name:       'userCreate',
+    path:       '/users/add',
+    component:  '~/views/users/userCreate.vue'
+  },
+  {
     path:       '/users/:id(\\w+)',
     component:  '~/views/users/user.vue',
     children: [
