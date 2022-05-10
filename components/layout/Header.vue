@@ -85,7 +85,20 @@ const NAV = [
     to:       { name: 'users' },
     name:     'users.title',
     roles:    ['ROLE_ADMIN', 'ROLE_USERS_MANAGER'],
-    children: []
+    children: [
+      {
+        to:     { name: 'users' },
+        name:   'users.titles.usersAll'
+      },
+      {
+        to:     { name: 'usersRemoved' },
+        name:   'users.titles.usersRemoved'
+      },
+      {
+        to:     { name: 'usersBanned' },
+        name:   'users.titles.usersBanned'
+      }
+    ]
   }
 ];
 

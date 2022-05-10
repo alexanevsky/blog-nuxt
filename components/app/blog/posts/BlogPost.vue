@@ -3,7 +3,7 @@
 
     <!-- Post alerts -->
     <div v-if="post.isRemoved && post.permissions.restore" class="alert alert-negative mb-5 text">
-      <p v-if="$params.get('blogPosts.restoreDaysLimit')">{{ $t('blogPosts.info.removedRestorable', {restorableTo: $utils.convert.datetime($utils.convert.datetimeModify(post.deletedAt, {days: $params.get('blogPosts.restoreDaysLimit')}))}) }}</p>
+      <p v-if="$params.get('blogPosts.restoreDaysLimit')">{{ $t('blogPosts.info.removedRestorable', {restorableTo: $utils.convert.datetime($utils.convert.datetimeModify(post.removedAt, {days: $params.get('blogPosts.restoreDaysLimit')}))}) }}</p>
       <p v-else>{{ $t('blogPosts.info.removed') }}</p>
     </div>
 

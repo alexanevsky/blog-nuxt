@@ -43,11 +43,11 @@ export default {
     },
 
     regex() {
-      return this.$params.get(`contactsRegex.${this.value.contact}`);
+      return this.$params.get(`contacts.regex.${this.value.contact}`);
     },
 
     format() {
-      const format = this.$params.get(`contactsFormats.${this.value.contact}`);
+      const format = this.$params.get(`contacts.formats.${this.value.contact}`);
 
       if (!format || SKIP_FORMAT.includes(this.value.contact)) {
         return [];

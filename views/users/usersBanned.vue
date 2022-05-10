@@ -1,18 +1,24 @@
 <template>
   <LayoutContainer>
     <template #breadcrumbs>
-      <LayoutBreadcrumb name="users.title" to="users" :active="true" />
+      <LayoutBreadcrumb name="users.title" to="users" />
+      <LayoutBreadcrumb name="users.titles.bannedUsers" to="usersBanned" :active="true" />
     </template>
 
-    <AppUsersList :users="users" />
-    <UIPaginationRouted :meta="meta" class="mt-5" />
+    <template v-if="users.length">
+      <AppUsersList :users="users" />
+      <UIPaginationRouted :meta="meta" class="mt-5" />
+    </template>
+    <template v-else>
+      <div class="alert alert-muted">{{ $t('users.messages.emptyBanned') }}</div>
+    </template>
   </LayoutContainer>
 </template>
 
 <script>
 export default {
   async asyncData({ params, error, $repositories }) {
-    const response = await $repositories.users.fetchAll(params.page || 1);
+    const response = await $repositories.users.fetchBanned(params.page || 1);
 
     if (!response.success) {
       error({statusCode: response.status, message: response.message});
