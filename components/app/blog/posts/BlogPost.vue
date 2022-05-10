@@ -21,11 +21,7 @@
             <span v-if="!post.isPublished" class="badge badge-negative ml-2">{{ $t('blogPosts.values.unpublished') }}</span>
           </h1>
         </div>
-        <div class="mb-o3 text">
-          <template v-for="(item, i) in post.description">
-            <p :key="i" v-if="item.type == 'paragraph' && item.data && item.data.text" v-html="item.data.text"></p>
-          </template>
-        </div>
+        <div class="mb-o3 text" v-html="$utils.convert.blockContent(post.description)"></div>
         <div v-if="layout !== 'sidebar'" class="label-group label-group-sm label-group-m-top">
           <template v-if="post.author">
             <NuxtLink :to="{name: 'user', params: {id: post.author.alias || post.author.id}}" class="userlabel userlabel-muted">
@@ -57,11 +53,7 @@
 
     <!-- Post body -->
     <div class="card mb-o5">
-      <div class="card-body text text-justify">
-        <template v-for="(item, i) in post.content">
-          <p :key="i" v-if="item.type == 'paragraph' && item.data && item.data.text" v-html="item.data.text"></p>
-        </template>
-      </div>
+      <div class="card-body text text-justify" v-html="$utils.convert.blockContent(post.content)"></div>
     </div>
   </div>
 
