@@ -1,0 +1,10 @@
+.ce-paragraph {
+    &[data-placeholder] {
+        &:empty {
+            &::before {
+                opacity: 1 !important;
+                color: color('muted') !important;
+            }
+        }
+    }
+}

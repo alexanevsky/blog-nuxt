@@ -2,7 +2,7 @@
   <form @submit.prevent="handleForm()" novalidate>
     <div class="form-group">
       <div class="form-field">
-        <FormTextarea v-model="data" :required="true" :rows="3" />
+        <FormEditorJs v-model="data" :tools="[]" />
       </div>
       <FormError :error="error" />
     </div>

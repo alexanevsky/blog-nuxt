@@ -1,0 +1,144 @@
+
+// Actions
+.ce-toolbar__actions {
+  left: calc(#{-$editorjs-block-btn-size} + #{-$editorjs-block-btn-offset}) !important;
+  right: calc(#{-$editorjs-block-btn-size} + #{-$editorjs-block-btn-offset}) !important;
+}
+
+.ce-toolbar__plus,
+.ce-toolbar__settings-btn {
+  position: absolute;
+  width: $editorjs-block-btn-size;
+  height: $editorjs-block-btn-size;
+  margin: 0 !important;
+  border: $editorjs-block-btn-border-width solid $editorjs-block-btn-border-color !important;
+  border-radius: 0;
+  background-color: $editorjs-btn-bg;
+  color: $editorjs-btn-color;
+  box-shadow: none !important;
+  @include transition($editorjs-block-btn-transition);
+  @include border-radius($editorjs-block-btn-border-radius);
+
+  svg {
+    width: 14px !important;
+    height: 14px !important;
+  }
+  &:hover {
+    color: $editorjs-btn-hover-color;
+    border-color: $editorjs-block-btn-border-hover-color;
+    background-color: $editorjs-btn-hover-bg;
+  }
+}
+
+.ce-toolbar__plus {
+  left: 0;
+}
+.ce-toolbar__settings-btn {
+  right: 0;
+}
+
+// Popover
+.cdx-search-field {
+  display: none;
+}
+.ce-popover__items {
+  margin-top: 0;
+}
+.ce-popover__item {
+  background-color: $dropdown-bg;
+  border: none !important;
+  color: $dropdown-color;
+  @include transition($link-transition);
+
+  .ce-popover__item-icon {
+    border-color: $dropdown-border-color;
+    border-radius: $border-radius;
+    background: $dropdown-bg;
+    color: $dropdown-color;
+  }
+  &:hover {
+    background-color: $dropdown-hover-bg;
+    color: $dropdown-hover-color;
+  }
+  &.ce-popover__item--focused {
+    background-color: $dropdown-active-bg !important;
+    color: $dropdown-active-color;
+
+    .ce-popover__item-icon {
+      border-color: $dropdown-active-bg;
+    }
+  }
+}
+
+// Settings block
+.ce-settings {
+  right: 0;
+  left: auto;
+  top: calc(#{$editorjs-block-btn-size} + #{$dropdown-spacer});
+  background-color: $dropdown-bg;
+  border: $dropdown-border-width solid $dropdown-border-color;
+  border-radius: 0;
+  box-shadow: none;
+  @include border-radius($dropdown-border-radius);
+  @include box-shadow($dropdown-box-shadow);
+}
+
+.cdx-settings-wrapper {
+  border-bottom: $dropdown-border-width solid $dropdown-border-color !important;
+
+  &:not(:first-child) {
+    padding-top: 3px;
+  }
+}
+
+.cdx-settings-label {
+  color: color('muted');
+  font-size: $font-size-sm;
+  margin-bottom: -2px;
+}
+
+// Settings buttons
+.ce-settings__button,
+.cdx-settings-button,
+.cdx-settings__button {
+  background-color: $editorjs-btn-bg;
+  color: $editorjs-btn-color;
+  border-radius: 0;
+  @include transition($editorjs-btn-transition);
+  @include border-radius($editorjs-btn-border-radius);
+
+  &:hover {
+    background-color: $editorjs-btn-hover-bg;
+    color: $editorjs-btn-hover-color;
+  }
+  &.ce-settings__button--confirm {
+    background-color: $editorjs-btn-bg !important;
+    color: color('negative');
+
+    &:hover {
+      background-color: $editorjs-btn-hover-bg !important;
+      color: color('negative');
+    }
+  }
+}
+.cdx-settings-button--active {
+  background-color: $editorjs-btn-active-bg;
+  color: $editorjs-btn-active-color;
+}
+
+.ce-toolbox__button {
+  background-color: $editorjs-btn-bg;
+  color: $editorjs-btn-color;
+  border-radius: 0;
+  @include transition($editorjs-btn-transition);
+  @include border-radius($editorjs-btn-border-radius);
+
+  &:hover {
+    background-color: $editorjs-btn-hover-bg;
+    color: $editorjs-btn-hover-color;
+  }
+}
+.ce-toolbox__button--active {
+  background-color: $editorjs-btn-active-bg;
+  color: $editorjs-btn-active-color;
+}

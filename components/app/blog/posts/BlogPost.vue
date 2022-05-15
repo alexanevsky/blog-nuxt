@@ -53,7 +53,7 @@
 
     <!-- Post body -->
     <div class="card mb-o5">
-      <div class="card-body text text-justify" v-html="$utils.convert.blockContent(post.content)"></div>
+      <div class="card-body text" v-html="$utils.convert.blockContent(post.content)"></div>
     </div>
   </div>
 

@@ -1097,3 +1097,37 @@ $toastr-warning-bg:           color('warning');
 $toastr-warning-color:        color-yiq($toastr-warning-bg);
 $toastr-warning-border-color: transparent;
 $toastr-warning-box-shadow:   $toastr-box-shadow;
+
+
+// Editor JS
+$editorjs-block-btn-size:               30px;
+$editorjs-block-btn-offset:             $spacer;
+$editorjs-block-btn-border-width:       $border-width;
+$editorjs-block-btn-border-color:       $border-color;
+$editorjs-block-btn-border-radius:      $border-radius;
+$editorjs-block-btn-border-hover-color: $border-color;
+$editorjs-block-btn-transition:         color #{$transition-duration} #{$transition-function}, background-color #{$transition-duration} #{$transition-function}, border-color #{$transition-duration} #{$transition-function};
+
+$editorjs-btn-bg:             transparent;
+$editorjs-btn-color:          $body-color;
+$editorjs-btn-border-radius:  $border-radius;
+$editorjs-btn-transition:     color #{$transition-duration} #{$transition-function}, background-color #{$transition-duration} #{$transition-function};
+$editorjs-btn-hover-color:    color('primary');
+$editorjs-btn-hover-bg:       color('light');
+$editorjs-btn-active-bg:      transparent;
+$editorjs-btn-active-color:   color('primary');
+
+$editorjs-text-font-family:       $font-family-base;
+$editorjs-text-font-size:         $font-size-base;
+$editorjs-text-line-height:       $line-height-base;
+$editorjs-text-color:             $color-text;
+$editorjs-text-spacer:            $text-spacer;
+$editorjs-text-spacer-titles:     $text-spacer;
+$editorjs-text-link-color:        $link-color;
+$editorjs-text-link-hover-color:  $link-hover-color;
+
+$editorjs-tool-delimiter-border-width:  $hr-border-width;
+$editorjs-tool-delimiter-border-style:  $hr-border-style;
+$editorjs-tool-delimiter-border-color:  $hr-border-color;
+
+$editorjs-tool-list-item-spacer:  $text-spacer;

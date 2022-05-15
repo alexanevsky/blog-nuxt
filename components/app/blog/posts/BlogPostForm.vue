@@ -29,7 +29,7 @@
             <div class="form-group">
               <label class="form-label" :class="isRequired.description ? 'required' : null" for="description">{{ $t('blogPosts.properties.description') }}:</label>
               <div class="form-field">
-                <FormTextarea v-model="data.description" id="description" :rows="5" :required="isRequired.description" />
+                <FormEditorJs v-model="data.description" id="description" :required="isRequired.description" :tools="[]" />
               </div>
               <FormError :error="errors.description" />
             </div>
@@ -38,7 +38,7 @@
             <div class="form-group">
               <label class="form-label" :class="isRequired.content ? 'required' : null" for="content">{{ $t('blogPosts.properties.content') }}:</label>
               <div class="form-field">
-                <FormTextarea v-model="data.content" id="content" :rows="15" :required="isRequired.content" />
+                <FormEditorJs v-model="data.content" id="content" :required="isRequired.content" />
               </div>
               <FormError :error="errors.content" />
             </div>

@@ -7,5 +7,7 @@ export default [
   '~/plugins/notify',
   '~/plugins/repositories',
   '~/plugins/security',
-  '~/plugins/utilities'
+  '~/plugins/utilities',
+
+  { src: '~/plugins/editor.js', mode: 'client' }
 ];

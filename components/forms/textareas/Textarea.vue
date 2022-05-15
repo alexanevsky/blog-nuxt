@@ -20,7 +20,7 @@ export default {
 
   computed: {
     isValueJson() {
-      return ['array', 'object'].includes(typeof this.value);
+      return typeof this.value === 'object';
     },
 
     normalizedValue() {

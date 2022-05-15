@@ -150,7 +150,7 @@
         <div v-if="hasField('biography')" class="form-group">
           <label class="form-label" :class="isRequired.biography ? 'required' : null" for="biography">{{ $t('users.properties.biography') }}:</label>
           <div class="form-field">
-            <FormTextarea v-model="data.biography" id="biography" :required="isRequired.biography" />
+            <FormEditorJs v-model="data.biography" id="biography" :tools="['list']" />
           </div>
           <FormError :error="errors.biography" />
         </div>

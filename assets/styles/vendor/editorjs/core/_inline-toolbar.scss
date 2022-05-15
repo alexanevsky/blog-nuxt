@@ -1,0 +1,136 @@
+// Inline toolbar
+.ce-inline-toolbar {
+  background-color: $dropdown-bg;
+  border: $dropdown-border-width solid $dropdown-border-color;
+  border-radius: 0;
+  box-shadow: none;
+  @include border-radius($dropdown-border-radius);
+  @include box-shadow($dropdown-box-shadow);
+}
+
+// Inline toolbar butons
+.ce-inline-tool {
+  margin: 2px !important;
+  width: 30px;
+  height: 30px;
+  padding: 0 !important;
+  background-color: $editorjs-btn-bg;
+  color: $editorjs-btn-color;
+  border-radius: 0;
+  @include transition($editorjs-btn-transition);
+  @include border-radius($editorjs-btn-border-radius);
+
+  &:hover {
+    background-color: $editorjs-btn-hover-bg;
+    color: $editorjs-btn-hover-color;
+  }
+  &.ce-inline-tool--active {
+    background-color: $editorjs-btn-hover-bg;
+    color: $editorjs-btn-hover-color;
+  }
+}
+
+// Inline form fields
+.ce-inline-tool--input,
+.ce-inline-tool--select {
+  display: block;
+  width: calc(100% - 5px * 2);
+  margin: 5px;
+  height: $form-widget-height-sm;
+  padding: $form-widget-padding-y-sm $form-widget-padding-x-sm;
+  font-family: $form-widget-font-family;
+  font-weight: $form-widget-font-weight;
+  line-height: $form-widget-line-height-sm;
+  color: $form-widget-color;
+  background-color: $form-widget-bg;
+  background-clip: padding-box;
+  border: $form-widget-border-width solid $form-widget-border-color;
+
+  @include font-size($form-widget-font-size-sm);
+  @include border-radius($form-widget-border-radius, 0);
+  @include box-shadow($form-widget-box-shadow);
+  @include transition($form-widget-transition);
+
+  &::-ms-expand {
+    background-color: transparent;
+    border: 0;
+  }
+  &:-moz-focusring {
+    color: transparent;
+    text-shadow: 0 0 0 $form-widget-color;
+  }
+
+  @include form-input-focus();
+
+  &::placeholder {
+    color: $form-widget-placeholder-color;
+    opacity: 1;
+  }
+
+  &:disabled,
+  &[readonly] {
+    background-color: $form-widget-disabled-bg;
+    opacity: 1;
+  }
+}
+
+.ce-inline-tool--select {
+  &:focus::-ms-value {
+  color: $form-widget-color;
+  background-color: $form-widget-bg;
+  }
+}
+
+// Dropdown button
+.ce-inline-toolbar__dropdown {
+  border-right-color: $dropdown-border-color;
+  background-color: $editorjs-btn-bg;
+  color: $editorjs-btn-color;
+  border-radius: 0;
+  @include transition($editorjs-btn-transition);
+
+  &:hover {
+    background-color: $editorjs-btn-hover-bg;
+    color: $editorjs-btn-hover-color;
+  }
+}
+
+// Conversion toolbar
+.ce-conversion-toolbar {
+  margin-top: $dropdown-spacer;
+  background-color: $dropdown-bg;
+  border: $dropdown-border-width solid $dropdown-border-color;
+  border-radius: 0;
+  box-shadow: none;
+  @include border-radius($dropdown-border-radius);
+  @include box-shadow($dropdown-box-shadow);
+}
+
+.ce-conversion-toolbar__label {
+  color: color('muted');
+  font-size: $font-size-sm;
+  font-weight: normal;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+.ce-conversion-tool {
+  font-size: $font-size-sm;
+  font-weight: normal;
+  @include transition($transition-base);
+
+  @include hover-focus() {
+    color: $dropdown-color !important;
+    text-decoration: none;
+    background-color: $dropdown-hover-bg !important;
+  }
+  &.ce-conversion-tool--focused {
+    color: $dropdown-active-color !important;
+    text-decoration: none;
+    background-color: $dropdown-active-bg !important;
+  }
+  .ce-conversion-tool__icon {
+    border-color: $border-color;
+    color: $body-color !important;
+  }
+}

@@ -1,0 +1,96 @@
+.codex-editor__redactor {
+  padding-bottom: 0 !important;
+}
+
+// Block
+.cdx-block {
+  padding: 0;
+}
+
+.cdx-block,
+.ce-block {
+  font-family: $editorjs-text-font-family;
+  font-size: $editorjs-text-font-size;
+  line-height: $editorjs-text-line-height !important;
+  color: $editorjs-text-color;
+
+  &:not(:first-child) {
+    margin-top: $editorjs-text-spacer;
+  }
+  a:not(.btn) {
+    color: $editorjs-text-link-color;
+
+    &:hover {
+      color: $editorjs-text-link-hover-color;
+    }
+  }
+}
+
+.ce-block__content,
+.ce-toolbar__content {
+  max-width: none;
+  margin: 0 calc($editorjs-block-btn-size + $editorjs-block-btn-offset);
+}
+
+.ce-block--selected .ce-block__content {
+  background: rgba(color('primary'), .15);
+}
+
+// Reset narrow stylesheet
+.codex-editor--narrow {
+  .codex-editor__redactor {
+    margin-right: 0;
+  }
+  .ce-block--focused {
+    margin-right: 0;
+    padding-right: 0;
+  }
+}
+
+// Form fields
+.cdx-input {
+  display: block;
+  width: 100%;
+  // height: $form-widget-height;
+  padding: $form-widget-padding-y $form-widget-padding-x;
+  font-family: $form-widget-font-family;
+  font-weight: $form-widget-font-weight;
+  line-height: $form-widget-line-height;
+  color: $form-widget-color;
+  background-color: $form-widget-bg;
+  background-clip: padding-box;
+  border: $form-widget-border-width solid $form-widget-border-color;
+
+  @include font-size($form-widget-font-size);
+  @include border-radius($form-widget-border-radius, 0);
+  @include box-shadow($form-widget-box-shadow);
+  @include transition($form-widget-transition);
+
+  &::-ms-expand {
+    background-color: transparent;
+    border: 0;
+  }
+  &:-moz-focusring {
+    color: transparent;
+    text-shadow: 0 0 0 $form-widget-color;
+  }
+
+  @include form-input-focus();
+
+  &::placeholder {
+    color: $form-widget-placeholder-color;
+    opacity: 1;
+  }
+
+  &:disabled,
+  &[readonly] {
+    background-color: $form-widget-disabled-bg;
+    opacity: 1;
+  }
+  &.cdx-input--sm {
+    // height: $form-widget-height-sm;
+    padding: $form-widget-padding-y-sm $form-widget-padding-x-sm;
+    @include font-size($form-widget-font-size-sm);
+    line-height: $form-widget-line-height-sm;
+  }
+}

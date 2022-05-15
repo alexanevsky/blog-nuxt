@@ -1,0 +1,10 @@
+.ce-delimiter {
+    border-top: #{$editorjs-tool-delimiter-border-width} #{$editorjs-tool-delimiter-border-style} #{$editorjs-tool-delimiter-border-color} !important;
+    height: 0 !important;
+    line-height: 0 !important;
+    padding: 0 !important;
+
+    &::before {
+        display: none !important;
+    }
+}

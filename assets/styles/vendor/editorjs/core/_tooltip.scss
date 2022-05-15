@@ -1,0 +1,18 @@
+.ct {
+  box-shadow: none;
+  border-radius: 0;
+
+  &::before {
+    background-color: $tooltipster-bg;
+    border-radius: 0;
+    @include border-radius($border-radius);
+
+  }
+  &::after {
+    background-color: $tooltipster-bg;
+  }
+  .ct__content {
+    border-radius: 0;
+    color: color-yiq($tooltipster-bg);
+  }
+}

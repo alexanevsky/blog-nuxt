@@ -3,8 +3,8 @@ const convertHeader = (data) => {
 };
 
 const convertParagraph = (data) => {
-  if (data.align) {
-    return `<p class="text-${data.align}">${data.text}</p>`;
+  if (data.alignment) {
+    return `<p class="text-${data.alignment}">${data.text}</p>`;
   }
 
   return `<p>${data.text}</p>`;

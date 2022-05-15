@@ -1,0 +1,11 @@
+.ce-header {
+    padding: 0 !important;
+    margin: 0 !important;
+    text-align: $text-heading-text-align;
+}
+h1.ce-header { @include heading(1); }
+h2.ce-header { @include heading(2); }
+h3.ce-header { @include heading(3); }
+h4.ce-header { @include heading(4); }
+h5.ce-header { @include heading(5); }
+h6.ce-header { @include heading(6); }
