@@ -42,6 +42,14 @@ export default ({ $api }) => ({
     return await $api.get(`/users/${id}/update`);
   },
 
+  async avatarUpload(id, content) {
+    return await $api.post(`/users/${id}/avatar`, content);
+  },
+
+  async avatarDelete(id) {
+    return await $api.delete(`/users/${id}/avatar`);
+  },
+
   async remove(id) {
     return await $api.post(`/users/${id}/remove`);
   },

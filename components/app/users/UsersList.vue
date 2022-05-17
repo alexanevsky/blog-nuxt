@@ -17,7 +17,7 @@
               <td>
                 <NuxtLink :to="{name: 'user', params: {id: user.alias || user.id}}">
                   <img v-if="user.avatar" class="avatar avatar-lg" :src="user.avatarUrl" :alt="user.username">
-                  <img v-else class="avatar avatar-lg" src="@/assets/images/no-avatar.png">
+                  <img v-else class="avatar avatar-lg" src="~/assets/images/no-avatar.png">
                 </NuxtLink>
               </td>
               <td class="title-3">

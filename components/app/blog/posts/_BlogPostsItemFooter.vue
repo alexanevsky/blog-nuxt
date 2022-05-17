@@ -3,7 +3,8 @@
     <div class="label-group label-group-sm label-group-m-top">
       <template v-if="post.author && !exclude.includes('readmore')">
         <NuxtLink :to="{name: 'user', params: {id: post.author.alias || post.author.id}}" class="userlabel userlabel-muted">
-          <img class="userlabel-avatar" :src="post.author.avatarUrl" :alt="post.author.username" :title="$t('blogPosts.properties.author')">
+          <img v-if="post.author.avatar" class="userlabel-avatar" :src="post.author.avatarUrl" :alt="post.author.username" :title="$t('blogPosts.properties.author')">
+          <img v-else class="userlabel-avatar" src="~/assets/images/no-avatar.png" alt="">
           <div class="userlabel-name">{{ post.author.username }}</div>
         </NuxtLink>
       </template>

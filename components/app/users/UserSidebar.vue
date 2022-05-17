@@ -4,7 +4,7 @@
     <div class="card-body">
       <div class="text-center mb-3">
         <img v-if="user.avatar" class="avatar avatar-xl" :src="user.avatarUrl" :alt="user.username">
-          <img v-else class="avatar avatar-xl" src="@/assets/images/no-avatar.png">
+        <img v-else class="avatar avatar-xl" src="~/assets/images/no-avatar.png">
       </div>
       <h1 class="title-1 mb-o2 text-center">{{ user.username }}</h1>
       <div v-if="user.isBanned && user.permissions.update" class="title-1 mb-o2 mt-n1 text-center">

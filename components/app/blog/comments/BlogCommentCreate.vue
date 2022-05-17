@@ -3,7 +3,8 @@
     <div class="comment-body">
       <div class="comment-header">
         <div class="comment-userlabel userlabel userlabel-sm">
-            <img class="userlabel-avatar" :src="$auth.user.avatarUrl" :alt="$auth.user.username">
+            <img v-if="$auth.user.avatar" class="userlabel-avatar" :src="$auth.user.avatarUrl" :alt="$auth.user.username">
+            <img v-else class="userlabel-avatar" src="~/assets/images/no-avatar.png" alt="">
             <span class="userlabel-name">{{ $auth.user.username }}</span>
         </div>
       </div>

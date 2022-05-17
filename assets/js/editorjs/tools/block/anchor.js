@@ -5,8 +5,6 @@ export default class Anchor {
     this.api = api;
     this.config = config;
     this.data = data;
-
-    console.log(this.data);
   }
 
   render() {

@@ -1,0 +1,76 @@
+.form-image {
+  border-radius: $form-widget-image-border-radius;
+
+  &.form-image-avatar {
+    width: $form-widget-image-avatar-width;
+    min-height: $form-widget-image-min-height;
+    border-radius: $form-widget-image-avatar-border-radius;
+  }
+
+  // Choose
+  .form-image-choose {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: inherit;
+    height: inherit;
+    min-height: $form-widget-image-min-height;
+    border-radius: inherit;
+    background-color: $form-widget-image-choose-bg;
+  }
+
+  // Original
+  .form-image-original {
+    position: relative;
+    width: inherit;
+    min-height: inherit;
+    height: inherit;
+    border-radius: inherit;
+    background-size: cover;
+    background-position: center center;
+
+    img {
+      width: 100%;
+      min-height: inherit;
+      border-radius: inherit;
+    }
+  }
+
+  // Preview
+  .form-image-preview {
+    position: relative;
+    width: inherit;
+    height: inherit;
+    border-radius: inherit;
+    background-size: cover;
+    background-position: center center;
+
+    img {
+      width: 100%;
+      border-radius: inherit;
+    }
+  }
+
+  // Toolbars
+  .form-image-original,
+  .form-image-preview {
+    .form-image-toolbar {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: inherit;
+      background: $form-widget-image-toolbar-bg;
+      opacity: 0;
+      @include transition(opacity $transition-properties);
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+}

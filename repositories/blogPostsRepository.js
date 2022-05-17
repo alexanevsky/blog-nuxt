@@ -49,6 +49,14 @@ export default ({ $api }) => ({
     return await $api.get(`/blog/posts/${id}/update`);
   },
 
+  async imageUpload(id, content) {
+    return await $api.post(`/blog/posts/${id}/image`, content);
+  },
+
+  async imageDelete(id) {
+    return await $api.delete(`/blog/posts/${id}/image`);
+  },
+
   async remove(id) {
     return await $api.post(`/blog/posts/${id}/remove`);
   },

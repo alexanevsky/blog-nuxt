@@ -6,6 +6,18 @@
       <div class="card-body">
         <div class="title-2 mb-3">{{ $t('users.titles.updateProfile') }}</div>
 
+        <!-- Avatar -->
+        <div class="form-row">
+          <div class="col-md-4 col-form-label">
+            <label class="form-label" for="avatar">{{ $t('users.properties.avatar') }}:</label>
+          </div>
+          <div class="col-md-8">
+            <div class="form-field">
+              <FormImage v-model="avatar" id="avatar" :original="user.avatarUrl" :avatar="true" />
+            </div>
+          </div>
+        </div>
+
         <!-- Email -->
         <div class="form-row">
           <div class="col-md-4 col-form-label">
@@ -196,6 +208,7 @@ export default {
   data: () => ({
     fields:       [],
     data:         FIELDS_DEFAULTS,
+    avatar:       null,
     errors:       ERRORS,
     requirements: REQUIREMENTS,
     isHandling:   false
@@ -221,8 +234,6 @@ export default {
     this.fields =       Object.keys(response.data.fields);
     this.data =         this.$utils.object.map(FIELDS_DEFAULTS, (v, k) => response.data.fields[k] ? response.data.fields[k].value : FIELDS_DEFAULTS[k]);
     this.requirements = this.$utils.object.map(FIELDS_DEFAULTS, (v, k) => response.data.fields[k] ? response.data.fields[k].requirements : REQUIREMENTS[k]);
-
-    this.$utils.consoleLog(this.data);
   },
 
   methods: {
@@ -240,18 +251,29 @@ export default {
       this.clearErrors();
 
       const data = this.data;
-      const response = await this.$repositories.users.update(this.user.id, data);
+      const fieldsResponse = await this.$repositories.users.update(this.user.id, data);
 
-      if (!response.success) {
-        this.$notify.error(response.message);
-        this.errors = { ...this.errors, ...response.errors };
+      if (!fieldsResponse.success) {
+        this.$notify.error(fieldsResponse.message);
+        this.errors = { ...this.errors, ...fieldsResponse.errors };
         this.isHandling = false;
 
         return;
       }
 
-      this.$notify.success(response.message);
-      this.$emit('form-handled', response.data);
+      if (this.avatar || this.avatar === false) {
+        const avatarResponse = this.avatar === false
+          ? await this.$repositories.users.avatarDelete(this.user.id)
+          : await this.$repositories.users.avatarUpload(this.user.id, this.avatar);
+
+        if (!avatarResponse.success) {
+          this.$notify.error(avatarResponse.message);
+        }
+      }
+
+      this.$notify.success(fieldsResponse.message);
+
+      this.$emit('form-handled', fieldsResponse.data);
       this.isHandling = true;
     },
 

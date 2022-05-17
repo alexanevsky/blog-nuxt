@@ -8,7 +8,12 @@ export default {
   },
 
   buttons: {
-    cancel: 'Cancel'
+    cancel: 'Cancel',
+    image: {
+      choose: 'Choose image',
+      delete: 'Delete',
+      undo:   'Undo'
+    }
   },
 
   properties: {

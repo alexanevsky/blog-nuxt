@@ -168,6 +168,7 @@ $border-radius:         .25rem;
 $border-radius-sm:      .2rem;
 $border-radius-lg:      .3rem;
 $border-rounded-pill:   50rem;
+$border-radius-avatar:  50%;
 
 $border-width-multipliers: (2, 3);
 
@@ -602,6 +603,13 @@ $form-widget-switch-width:                                  calc($form-widget-to
 $form-widget-switch-indicator-border-radius:                calc($form-widget-toggler-indicator-size / 2);
 $form-widget-switch-indicator-size:                         subtract($form-widget-toggler-indicator-size, $form-widget-toggler-indicator-border-width * 4);
 
+$form-widget-image-border-radius:         $border-radius;
+$form-widget-image-min-height:            150px;
+$form-widget-image-avatar-border-radius:  $border-radius-avatar;
+$form-widget-image-avatar-width:          $form-widget-image-min-height;
+$form-widget-image-toolbar-bg:            color-tint-modals(rgba(color('light'), .6), rgba(color('dark'), .6));
+$form-widget-image-choose-bg:             color('light');
+
 
 // Form
 $form-select-box-shadow:                0 1px 2px rgba($color-black, .075);
@@ -985,7 +993,6 @@ $rating-padding-y-lg:   .1rem;
 
 
 // Avatar
-$avatar-border-radius:          50%;
 $avatar-size:                   calc(#{$form-widget-btn-border-width * 2} + #{$form-widget-btn-padding-y * 2} + #{$form-widget-btn-font-size} * #{$form-widget-btn-line-height});
 $avatar-size-sm:                calc(#{$form-widget-btn-border-width * 2} + #{$form-widget-btn-padding-y-sm * 2} + #{$form-widget-btn-font-size-sm} * #{$form-widget-btn-line-height-sm});
 $avatar-size-lg:                calc(#{$form-widget-btn-border-width * 2} + #{$form-widget-btn-padding-y-lg * 2} + #{$form-widget-btn-font-size-lg} * #{$form-widget-btn-line-height-lg});
@@ -1002,7 +1009,7 @@ $label-symbol-color-link:       $label-symbol-color;
 $label-symbol-bg:               $card-cap-bg;
 $label-symbol-spacer:           spacer(3);
 
-$label-avatar-border-radius:    $avatar-border-radius;
+$label-avatar-border-radius:    $border-radius-avatar;
 
 $label-key-font-weight:         $font-weight-semibold;
 $label-key-font-size:           $font-size-sm;

@@ -2,8 +2,9 @@
   <div class="comment" :id="`comment-${comment.id}`">
     <div class="comment-body">
       <div class="comment-header">
-        <NuxtLink v-if="comment.author" :to="{name: 'user', props: {id: comment.author.alias || comment.author.id}}" class="comment-userlabel userlabel userlabel-sm text-nowrap">
-          <img class="userlabel-avatar" :src="comment.author.avatarUrl" :alt="comment.author.username">
+        <NuxtLink v-if="comment.author" :to="{name: 'user', params: {id: comment.author.alias || comment.author.id}}" class="comment-userlabel userlabel userlabel-sm text-nowrap">
+          <img v-if="comment.author.avatar" class="userlabel-avatar" :src="comment.author.avatarUrl" :alt="comment.author.username">
+          <img v-else class="userlabel-avatar" src="~/assets/images/no-avatar.png" alt="">
           <span class="userlabel-name">{{ comment.author.username }}</span>
         </NuxtLink>
         <div v-else class="comment-userlabel userlabel userlabel-sm text-nowrap">

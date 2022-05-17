@@ -4,7 +4,8 @@
     <div class="label-group">
       <template v-if="post.author">
         <NuxtLink :to="{name: 'user', params: {id: post.author.alias || post.author.id}}" class="userlabel">
-          <img class="userlabel-avatar" :src="post.author.avatarUrl" :alt="post.author.username">
+          <img v-if="post.author.avatar" class="userlabel-avatar" :src="post.author.avatarUrl" :alt="post.author.username">
+          <img v-else class="userlabel-avatar" src="~/assets/images/no-avatar.png" alt="">
           <div class="userlabel-content">
             <span class="userlabel-title">{{ $t('blogPosts.properties.author') }}</span>
             <span class="userlabel-name">{{ post.author.username }}</span>
